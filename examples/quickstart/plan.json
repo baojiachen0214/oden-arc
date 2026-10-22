@@ -1,0 +1,204 @@
+{
+  "plan_version": "1.0",
+  "document_id": "arc-quickstart-smoothing",
+  "title": "Smoothing: mechanism, example and limits",
+  "goal": {
+    "purpose": "learn",
+    "question": "How does the update work, and what does it not prove?",
+    "must_answer": [
+      "How does the update work, and what does it not prove?"
+    ]
+  },
+  "sources": [
+    {
+      "id": "lesson",
+      "title": "A small smoothing lesson",
+      "kind": "text",
+      "status": "read",
+      "coverage": "Complete synthetic tutorial",
+      "uri": "source.md",
+      "sha256": "f1331cbce94fc45d25bd35432375cdc3ae7493c892f4dfacca1c73ae6d47115e"
+    }
+  ],
+  "assets": [
+    {
+      "id": "values",
+      "path": "values.md",
+      "name": "Worked example.md",
+      "kind": "text",
+      "alt": "The four synthetic values and their shared units",
+      "derivation": {
+        "kind": "generated",
+        "note": "Table transcribed from the synthetic tutorial example"
+      },
+      "source_refs": [
+        {
+          "source_id": "lesson",
+          "locator": "Worked example"
+        }
+      ],
+      "sha256": "ddab98242999037d38304fe96c206231d87d8ceb835698472c42bb647f30f030"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "root",
+      "parent_id": null,
+      "label": "Understand smoothing, not a claim of accuracy",
+      "role": "root",
+      "support": "structure"
+    },
+    {
+      "id": "equation",
+      "parent_id": "root",
+      "label": "Blend the new observation with the previous value",
+      "role": "mechanism",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "lesson",
+          "locator": "Definition"
+        }
+      ],
+      "body": [
+        {
+          "kind": "equation",
+          "latex": "y_t=\\alpha x_t+(1-\\alpha)y_{t-1}"
+        }
+      ],
+      "note": "x_t: new observation; y_(t-1): previous smoothed value; alpha: dimensionless weight."
+    },
+    {
+      "id": "assumptions",
+      "parent_id": "root",
+      "label": "Use the same units, an initial value and alpha in [0,1]",
+      "role": "constraint",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "lesson",
+          "locator": "Definition"
+        }
+      ]
+    },
+    {
+      "id": "example",
+      "parent_id": "root",
+      "label": "For alpha=0.25, the update from 8 toward 12 is 9",
+      "role": "example",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "lesson",
+          "locator": "Worked example"
+        }
+      ],
+      "body": [
+        {
+          "kind": "equation",
+          "latex": "0.25\\times12+0.75\\times8=9"
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "parent_id": "root",
+      "label": "Smoothing does not prove predictive accuracy",
+      "role": "constraint",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "lesson",
+          "locator": "Limits"
+        }
+      ]
+    },
+    {
+      "id": "table",
+      "parent_id": "example",
+      "label": "Synthetic values",
+      "role": "resource",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "lesson",
+          "locator": "Worked example"
+        }
+      ],
+      "asset_id": "values"
+    }
+  ],
+  "cross_links": [
+    {
+      "id": "condition",
+      "from": "equation",
+      "to": "assumptions",
+      "label": "requires"
+    }
+  ],
+  "audit": {
+    "review_version": "1.0",
+    "questions": [
+      {
+        "question": "How does the update work, and what does it not prove?",
+        "status": "answered",
+        "node_ids": [
+          "equation",
+          "assumptions",
+          "example",
+          "limits"
+        ]
+      }
+    ],
+    "coverage": [
+      {
+        "source_id": "lesson",
+        "read_scope": "Complete source.md",
+        "unread_scope": "",
+        "method": "Author comparison against this synthetic tutorial"
+      }
+    ],
+    "decisions": [
+      {
+        "action": "retain",
+        "content": "Assumptions and non-predictive limit",
+        "reason": "Prevent an equation from implying unsupported accuracy",
+        "node_ids": [
+          "assumptions",
+          "limits"
+        ],
+        "source_ids": [
+          "lesson"
+        ]
+      }
+    ],
+    "issues": [],
+    "checks": {
+      "semantic": {
+        "status": "passed",
+        "reviewer": "Synthetic example author",
+        "evidence": "Claims match the included synthetic tutorial; no real-world performance inference."
+      },
+      "reader": {
+        "status": "passed",
+        "reviewer": "Synthetic example author",
+        "evidence": "Conditions and accuracy limitation are visible sibling nodes."
+      },
+      "numbers_formulas": {
+        "status": "passed",
+        "reviewer": "Synthetic example author",
+        "evidence": "0.25*12 + 0.75*8 equals 9; alpha remains in [0,1]."
+      },
+      "resources": {
+        "status": "passed",
+        "reviewer": "Synthetic example author",
+        "evidence": "The Markdown table matches the tutorial values and identifies them as synthetic."
+      },
+      "native_runtime": {
+        "status": "not_run",
+        "reviewer": "",
+        "evidence": "No native application execution is claimed."
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "plan_version": "1.0",
+  "document_id": "starter-map",
+  "title": "Minimal evidence map",
+  "goal": {
+    "purpose": "learn",
+    "question": "Understand the assumptions",
+    "must_answer": [
+      "Which conditions must be checked?"
+    ]
+  },
+  "sources": [],
+  "assets": [],
+  "nodes": [
+    {
+      "id": "root",
+      "parent_id": null,
+      "label": "Keep decisive conditions visible",
+      "role": "root",
+      "support": "structure"
+    },
+    {
+      "id": "n1",
+      "parent_id": "root",
+      "label": "Core equation",
+      "role": "mechanism",
+      "support": "structure",
+      "body": [
+        {
+          "kind": "equation",
+          "latex": "y_t=\\alpha x_t+(1-\\alpha)y_{t-1}"
+        }
+      ]
+    },
+    {
+      "id": "n2",
+      "parent_id": "root",
+      "label": "Applicability and limits",
+      "role": "constraint",
+      "support": "structure"
+    }
+  ],
+  "cross_links": [
+    {
+      "id": "link1",
+      "from": "n1",
+      "to": "n2",
+      "label": "subject to"
+    }
+  ],
+  "audit": {
+    "review_version": "1.0",
+    "questions": [
+      {
+        "question": "Which conditions must be checked?",
+        "status": "answered",
+        "node_ids": [
+          "n2"
+        ]
+      }
+    ],
+    "coverage": [],
+    "decisions": [],
+    "issues": [],
+    "checks": {
+      "semantic": {
+        "status": "passed",
+        "reviewer": "template author",
+        "evidence": "Synthetic template structure only. Review all actual user content before delivery."
+      },
+      "reader": {
+        "status": "passed",
+        "reviewer": "template author",
+        "evidence": "Synthetic template structure only. Review all actual user content before delivery."
+      },
+      "numbers_formulas": {
+        "status": "passed",
+        "reviewer": "template author",
+        "evidence": "Synthetic template structure only. Review all actual user content before delivery."
+      },
+      "resources": {
+        "status": "passed",
+        "reviewer": "template author",
+        "evidence": "Synthetic template structure only. Review all actual user content before delivery."
+      },
+      "native_runtime": {
+        "status": "not_run",
+        "reviewer": "",
+        "evidence": ""
+      }
+    }
+  }
+}

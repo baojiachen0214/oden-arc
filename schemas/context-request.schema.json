@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "queries": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "must_include": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "string"
+      }
+    },
+    "room": {
+      "type": "string"
+    },
+    "budget_bytes": {
+      "type": "integer",
+      "minimum": 1500,
+      "maximum": 200000
+    },
+    "max_cards": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "mode": {
+      "enum": [
+        "full",
+        "delta"
+      ]
+    },
+    "session": {
+      "type": "string"
+    },
+    "epoch": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "queries"
+      ],
+      "properties": {
+        "queries": {
+          "minItems": 1
+        }
+      }
+    },
+    {
+      "required": [
+        "must_include"
+      ],
+      "properties": {
+        "must_include": {
+          "minItems": 1
+        }
+      }
+    }
+  ]
+}

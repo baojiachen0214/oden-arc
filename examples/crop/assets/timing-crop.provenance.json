@@ -1,0 +1,51 @@
+{
+  "record_version": "2.0",
+  "operation": "crop-image",
+  "source": {
+    "name": "core-timing.png",
+    "sha256": "385d734ec8ff28e4b00e6765c8bfa1d723ee0f74f6443d79b196ed16d65f46cc",
+    "size": [
+      1260,
+      770
+    ],
+    "exif_orientation": 1,
+    "frame": 0,
+    "frames": 1,
+    "id": "s-timing",
+    "path": "originals/core-timing.png",
+    "path_scope": "example-plan-relative"
+  },
+  "coordinates": {
+    "system": "top-left EXIF-oriented display pixels; right/bottom exclusive",
+    "display_size": [
+      1260,
+      770
+    ],
+    "box": [
+      35,
+      30,
+      1225,
+      735
+    ]
+  },
+  "color": {
+    "input_mode": "RGB",
+    "output_mode": "RGB",
+    "icc_retained": false,
+    "color_conversion": false,
+    "note": "Palette expansion/1-bit expansion is possible; no ICC profile conversion is performed."
+  },
+  "tool": {
+    "name": "Pillow",
+    "version": "12.3.0"
+  },
+  "output": {
+    "path": "crop.png",
+    "sha256": "f42a35e6baf0cfe38d8ffee805678d8711d650164892559333ba1af382280183",
+    "width": 1190,
+    "height": 705,
+    "bytes": 53876,
+    "format": "PNG"
+  },
+  "semantic_review": "Required: check captions, axes, units, legends and footnotes; crop mechanics do not prove completeness."
+}

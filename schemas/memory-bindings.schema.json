@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "workspace_id",
+    "goal_rev",
+    "nodes"
+  ],
+  "properties": {
+    "version": {
+      "const": "1.0"
+    },
+    "workspace_id": {
+      "type": "string"
+    },
+    "goal_rev": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "nodes": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 5000,
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 100,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "chunk_id",
+            "card_hash",
+            "plan_source_id",
+            "placement"
+          ],
+          "properties": {
+            "chunk_id": {
+              "type": "string"
+            },
+            "card_hash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "plan_source_id": {
+              "type": "string"
+            },
+            "placement": {
+              "enum": [
+                "label",
+                "body",
+                "note",
+                "resource"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

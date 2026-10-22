@@ -1,0 +1,7 @@
+{
+  "path": "主题/边界",
+  "summary": "多个有效证据卡共同支持的短摘要",
+  "dependencies": {
+    "从recall复制chunk_id": "从recall复制card_hash"
+  }
+}

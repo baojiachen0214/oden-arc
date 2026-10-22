@@ -1,0 +1,40 @@
+name: Checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  core:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ['3.10', '3.13']
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -e '.[test]'
+      - run: python scripts/run_tests.py
+      - run: python scripts/audit_public.py
+      - run: python scripts/arc.py preflight examples/quickstart/plan.json
+  media:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.13'
+      # PDF tests exercise the explicitly optional AGPL/commercial backend.
+      - run: python -m pip install -e '.[pdf,test]'
+      - run: python scripts/run_tests.py
+      - run: python scripts/repack.py --out ../oden-arc-source.zip
+      - run: python -m zipfile -e ../oden-arc-source.zip ../unpacked-arc
+      - run: python ../unpacked-arc/oden-arc/scripts/verify_bundle.py --strict

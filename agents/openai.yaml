@@ -1,0 +1,6 @@
+interface:
+  display_name: "Oden ARC"
+  short_description: "Turn sources into evidence-backed OdenMap mind maps"
+  default_prompt: "Use $oden-arc to organize my materials around my goal. Read SKILL.md first, load references as needed, preserve decisive qualifiers, and use durable batches for large inputs. Respond in my language and deliver a new OdenMap file with its sources."
+  icon_small: "./assets/brand/logo-32.png"
+  icon_large: "./assets/brand/logo.png"

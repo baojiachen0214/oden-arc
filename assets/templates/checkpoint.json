@@ -1,0 +1,11 @@
+{
+  "phase": "extract",
+  "next_actions": [
+    "继续领取未完成批次；完成后先汇总冲突和条件"
+  ],
+  "decisions": [
+    "以用户问题组织，不按文件机械分支"
+  ],
+  "blockers": [],
+  "pins": []
+}

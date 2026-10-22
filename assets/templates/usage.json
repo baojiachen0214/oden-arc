@@ -1,0 +1,7 @@
+{
+  "receipt": "真实API调用收据ID",
+  "provider": "实际提供商/模型",
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "cached_input_tokens": 0
+}

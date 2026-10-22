@@ -1,0 +1,4 @@
+# Optional PDF + image tooling. Review THIRD_PARTY.md before installing.
+# For Pillow only: python -m pip install -e '.[images]'
+Pillow>=10.4,<13
+PyMuPDF>=1.24,<2

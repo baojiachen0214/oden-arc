@@ -1,0 +1,3 @@
+# Full local test environment; PDF dependencies have separate license terms.
+-r requirements-media.txt
+jsonschema>=4.20,<5

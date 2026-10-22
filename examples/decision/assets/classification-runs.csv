@@ -1,0 +1,5 @@
+algorithm,version,category,correct,total,batch
+Rook,v2,clear_bottle,81,90,R-101
+Rook,v2,crumpled_bottle,7,10,R-102
+Sable,v1,clear_bottle,19,20,S-201
+Sable,v1,crumpled_bottle,64,80,S-202

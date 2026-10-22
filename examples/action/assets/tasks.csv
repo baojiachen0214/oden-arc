@@ -1,0 +1,9 @@
+id,task,owner,earliest_start,duration_minutes,dependency,status
+mix,最终混音锁定,Lin,2026-10-22T23:50:00+08:00,,external,预计最早时间，尚未承诺
+captions_draft,字幕文字草稿,,2026-10-22T15:00:00+08:00,,,可先准备
+captions_final,最终字幕时间轴,,,,mix,耗时未确认
+render,最终画面渲染,Chen,,25,mix;captions_final;cue_review,25 分钟为同机已有完整渲染记录
+qa,成片画面与声音检查,,,20,render,必须在导出完成后进行
+approve,内容批准,,,,qa,负责人及耗时未确定
+submit,最终提交,,,,approve,上传耗时未确定
+cue_review,灯光提示匹配检查,,,,final_clip,最终片段尚未收到

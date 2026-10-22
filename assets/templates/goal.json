@@ -1,0 +1,13 @@
+{
+  "question": "What are the main mechanisms, evidence and limits in these materials?",
+  "purpose": "learn",
+  "reader": "A reader who needs a concise explanation with source traceability",
+  "must_answer": [
+    "What is the central mechanism?",
+    "Which conditions or limitations change the conclusion?"
+  ],
+  "constraints": [
+    "Only actually reviewed material supports source facts",
+    "Keep decisive qualifiers visible with conclusions"
+  ]
+}

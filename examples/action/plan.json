@@ -1,0 +1,1032 @@
+{
+  "plan_version": "1.0",
+  "document_id": "synthetic-stage-release-shanghai-20261022",
+  "title": "舞台短片执行｜上海时间｜演练",
+  "goal": {
+    "purpose": "act",
+    "question": "现在可做什么、谁要确认，按当前进度与估时能否按时提交？",
+    "reader": "在上海工作的短片执行协调者",
+    "detail": "compact",
+    "must_answer": [
+      "现在能做什么？",
+      "谁还需要确认，哪些前置条件未满足？",
+      "按当前进度与现有估时能否赶上最后提交？",
+      "有哪些可用时间信息与预览入口，其覆盖边界是什么？"
+    ],
+    "assumptions": [
+      "以给定交接进度与后发布v3通知合并评估；使用上海UTC+08:00并保留原时区与跨日。",
+      "演练数据；只整理与生成文件，不联系任何人、不上传或提交。"
+    ]
+  },
+  "sources": [
+    {
+      "id": "s-handover",
+      "title": "演练短片交接",
+      "kind": "document",
+      "uri": "assets/handover.md",
+      "status": "read",
+      "coverage": "全文第1–9行；交接记录时间为上海2026-10-22 15:00",
+      "sha256": "543b0c880c4503700c474a1238353a1ba88dcb1f0643c8e55ce50c54e535ad75"
+    },
+    {
+      "id": "s-tasks",
+      "title": "任务与依赖表",
+      "kind": "spreadsheet",
+      "uri": "assets/tasks.csv",
+      "status": "read",
+      "coverage": "表头与全部8行任务；A1:G9；空值按未提供保留",
+      "sha256": "44fe47dde4114df310e8bc4f9043b9f84e402b59c2175da2902cef42bdc29b1b"
+    },
+    {
+      "id": "s-notice",
+      "title": "主办方最终提交通知 Version 3",
+      "kind": "text",
+      "uri": "assets/organizer-notice-v3.txt",
+      "status": "read",
+      "coverage": "全文第1–6行；发布时间2026-10-22 08:00 UTC",
+      "sha256": "9ff560657d5a1129d0f217f250cc616c76decf4a78f9e7df691c5c1c65e865d7"
+    },
+    {
+      "id": "s-vendor",
+      "title": "素材供应商附注（原件未随包；保留所引原文）",
+      "kind": "text",
+      "status": "read",
+      "coverage": "创建时已读vendor-readme.txt全文第1–8行；原件未随包；仅保留第2、8行的实际引用原文及原件SHA256",
+      "sha256": "6ca5a36a757d1c3bdcce91cb2e954defe3062da276fac886cff9824a4475112d"
+    },
+    {
+      "id": "s-subtitles",
+      "title": "rough-cut v2 前42秒字幕",
+      "kind": "text",
+      "uri": "assets/rough-cut-first42s.srt",
+      "status": "read",
+      "coverage": "全部4条字幕，00:00:00,000–00:00:42,000；未听原音频",
+      "sha256": "5c2458f5a90618450db938e1f2327655def9c080a894b0f5244a953c78c63d1f"
+    },
+    {
+      "id": "s-frame",
+      "title": "rough-cut v2 的00:12静态示意帧",
+      "kind": "image",
+      "uri": "assets/cue-preview.png",
+      "status": "read",
+      "coverage": "完整1200×700图片，包括标题、时间码及底部限制文字",
+      "sha256": "b3e51d0ba65d18f5e20e2dad7f69760f652e77fab7681bc133273025f0459230"
+    },
+    {
+      "id": "s-original-video",
+      "title": "rough-cut v2 原视频（未交付）",
+      "kind": "video",
+      "status": "unavailable",
+      "coverage": "交接记录称总时长96秒；原视频全段未取得，时长未从媒体实测"
+    },
+    {
+      "id": "s-final-clip",
+      "title": "最终片段（未收到）",
+      "kind": "video",
+      "status": "unavailable",
+      "coverage": "tasks.csv 的 cue_review 行说明最终片段尚未收到；全段未阅，时长未知"
+    },
+    {
+      "id": "s-user",
+      "title": "本次用户任务与执行范围",
+      "kind": "user",
+      "status": "read",
+      "coverage": "整理紧凑执行导图；上海时间；保留时间和预览入口；演练、不联系、不提交"
+    }
+  ],
+  "assets": [
+    {
+      "id": "a-handover",
+      "path": "assets/handover.md",
+      "kind": "text",
+      "name": "handover.md",
+      "source_refs": [
+        {
+          "source_id": "s-handover",
+          "locator": "全文第1–9行"
+        }
+      ],
+      "sha256": "543b0c880c4503700c474a1238353a1ba88dcb1f0643c8e55ce50c54e535ad75"
+    },
+    {
+      "id": "a-tasks",
+      "path": "assets/tasks.csv",
+      "kind": "text",
+      "name": "tasks.csv",
+      "source_refs": [
+        {
+          "source_id": "s-tasks",
+          "locator": "完整表格A1:G9",
+          "cell_range": "A1:G9"
+        }
+      ],
+      "sha256": "44fe47dde4114df310e8bc4f9043b9f84e402b59c2175da2902cef42bdc29b1b"
+    },
+    {
+      "id": "a-notice",
+      "path": "assets/organizer-notice-v3.txt",
+      "kind": "text",
+      "name": "organizer-notice-v3.txt",
+      "source_refs": [
+        {
+          "source_id": "s-notice",
+          "locator": "全文第1–6行"
+        }
+      ],
+      "sha256": "9ff560657d5a1129d0f217f250cc616c76decf4a78f9e7df691c5c1c65e865d7"
+    },
+    {
+      "id": "a-subtitles",
+      "path": "assets/rough-cut-first42s.srt",
+      "kind": "text",
+      "name": "rough-cut-first42s.srt",
+      "source_refs": [
+        {
+          "source_id": "s-subtitles",
+          "locator": "全部4条字幕，第1–15行",
+          "time_range": "00:00:00,000–00:00:42,000"
+        }
+      ],
+      "sha256": "5c2458f5a90618450db938e1f2327655def9c080a894b0f5244a953c78c63d1f"
+    },
+    {
+      "id": "a-frame",
+      "path": "assets/cue-preview.png",
+      "kind": "image",
+      "name": "cue-preview.png",
+      "source_refs": [
+        {
+          "source_id": "s-frame",
+          "locator": "完整图片；左上rough-cut v2 / 00:12；底部ONE FRAME ONLY及限制文字"
+        }
+      ],
+      "sha256": "b3e51d0ba65d18f5e20e2dad7f69760f652e77fab7681bc133273025f0459230",
+      "alt": "合成舞台静态示意图：rough-cut v2 / 00:12；只有单帧，不能证明动态灯光或无闪烁。完整保留标题和底部限制。"
+    },
+    {
+      "id": "a-checklist",
+      "path": "assets/execution-checklist.md",
+      "kind": "text",
+      "name": "execution-checklist.md",
+      "source_refs": [
+        {
+          "source_id": "s-tasks",
+          "locator": "A1:G9全部任务",
+          "cell_range": "A1:G9"
+        },
+        {
+          "source_id": "s-handover",
+          "locator": "第3–9行"
+        },
+        {
+          "source_id": "s-notice",
+          "locator": "第2–6行"
+        },
+        {
+          "source_id": "s-vendor",
+          "locator": "vendor-readme.txt 第2行（原件未附；所引原文保留）",
+          "quote": "字幕轨应与最终混音核对。此说明不改变主办方的提交门槛。"
+        },
+        {
+          "source_id": "s-vendor",
+          "locator": "vendor-readme.txt 第8行（原件未附；所引原文保留）",
+          "quote": "供应商没有提供最终成片，也没有批准内容的权限。"
+        },
+        {
+          "source_id": "s-subtitles",
+          "locator": "全部4条字幕",
+          "time_range": "00:00:00,000–00:00:42,000"
+        },
+        {
+          "source_id": "s-frame",
+          "locator": "完整图片及限制文字"
+        }
+      ],
+      "sha256": "2163832748d4970e2bcab6c1324533647e89eb993e799d1da60cdedd02b8009d",
+      "derivation": {
+        "kind": "generated",
+        "note": "AI将来源归并为执行表，明确区分原始事实、未知字段、建议和基于当前估时的时间推导；未新增完成状态或负责人。"
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": "root",
+      "parent_id": null,
+      "label": "舞台短片执行｜上海 UTC+08:00｜演练",
+      "role": "root",
+      "support": "user",
+      "source_refs": [
+        {
+          "source_id": "s-user",
+          "locator": "用户任务"
+        }
+      ],
+      "note": "按给定交接进度与v3通知组织。交接快照为2026-10-22 15:00上海；v3于同日16:00上海发布。不把资料时间当成实时状态；不联系任何人、不实际提交。",
+      "collapsed": false,
+      "attachment_ids": [
+        "a-checklist"
+      ]
+    },
+    {
+      "id": "n-schedule",
+      "parent_id": "root",
+      "label": "按当前估时赶不上：乐观QA仍晚5分",
+      "role": "claim",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-tasks",
+          "locator": "mix/render/qa行",
+          "cell_range": "A2:G6"
+        },
+        {
+          "source_id": "s-notice",
+          "locator": "第3、5–6行"
+        }
+      ],
+      "note": "这是基于现有估时的排期推导，不是实际完成时间承诺或25分钟物理下限。即便23:50已完成锁音、其他前置无等待，QA到00:35才结束；之后还必须批准并完成上传。未知耗时保留未知。",
+      "collapsed": false
+    },
+    {
+      "id": "n-deadline",
+      "parent_id": "n-schedule",
+      "label": "最终截止：10/23 00:30上海（v3）",
+      "role": "claim",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-notice",
+          "locator": "第2–6行"
+        }
+      ],
+      "note": "完整日期2026-10-23 00:30 UTC+08:00 = 原文2026-10-23 01:30 JST（UTC+09:00）=2026-10-22 16:30 UTC。v3明确替代v2的2026-10-22 23:00 UTC+08:00，延期90分钟；发布时间上海10/22 16:00。只改变截止，不豁免检查/批准。",
+      "collapsed": false,
+      "attachment_ids": [
+        "a-notice"
+      ]
+    },
+    {
+      "id": "n-bound",
+      "parent_id": "n-schedule",
+      "label": "乐观：23:50已锁音→25分渲染→20分QA＝00:35",
+      "role": "claim",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-tasks",
+          "locator": "mix的earliest_start与空白duration；render=25；qa=20",
+          "cell_range": "A2:G6"
+        }
+      ],
+      "note": "跨日均为2026-10-22至10-23上海时间。mix源字段为earliest_start，耗时未给；这里假设23:50已完成锁定以取最有利边界。渲染00:15结束，QA00:35结束，距00:30截止已晚5分。最终字幕、灯光等待、批准及上传均未额外计时；这不表示它们实际耗时为0。",
+      "collapsed": false
+    },
+    {
+      "id": "n-reschedule",
+      "parent_id": "n-schedule",
+      "label": "建议重排：补足5分及全部未知耗时",
+      "role": "step",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-tasks",
+          "locator": "mix/render/qa/approve/submit行",
+          "cell_range": "A2:G8"
+        },
+        {
+          "source_id": "s-notice",
+          "locator": "第5–6行"
+        }
+      ],
+      "note": "按现有25+20分钟串行段倒推，最晚23:45就须启动渲染，还须在此之前完成混音/字幕/灯光，并为批准与上传预留时间。确认混音可否提前、渲染有无更快实测或新截止安排；没有确认前保持不可达判断，不跳过QA或内容批准。",
+      "collapsed": false
+    },
+    {
+      "id": "n-now",
+      "parent_id": "root",
+      "label": "现在可做：字幕草稿与并行准备",
+      "role": "claim",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-handover",
+          "locator": "第6行"
+        },
+        {
+          "source_id": "s-tasks",
+          "locator": "captions_draft与后续任务行",
+          "cell_range": "A3:G8"
+        }
+      ],
+      "note": "现在按资料可先推进文字草稿；其他准备项是AI建议，不代表业务环节已完成。",
+      "collapsed": false,
+      "attachment_ids": [
+        "a-checklist",
+        "a-tasks"
+      ]
+    },
+    {
+      "id": "n-draft",
+      "parent_id": "n-now",
+      "label": "准备字幕文字草稿｜负责人待确认",
+      "role": "step",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-handover",
+          "locator": "第6行"
+        },
+        {
+          "source_id": "s-tasks",
+          "locator": "captions_draft行，owner空白",
+          "cell_range": "A3:G3"
+        }
+      ],
+      "note": "表内最早时间2026-10-22 15:00 UTC+08:00，状态为可先准备。现有文字仅00:00–00:42；不补造42–96秒字幕，不把临时旁白或未知说话人改成已确认。最终时间轴另等最终混音。",
+      "collapsed": false
+    },
+    {
+      "id": "n-prep",
+      "parent_id": "n-now",
+      "label": "建议先备渲染设置、QA清单与提交资料",
+      "role": "step",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-tasks",
+          "locator": "render/qa/approve/submit行",
+          "cell_range": "A5:G8"
+        }
+      ],
+      "note": "可并行准备机器与导出参数核对、完整画声检查清单、提交资料与上传条件；实际最终渲染、检查、批准、提交仍遵守依赖。仅提供执行建议，本次没有运行制作或提交操作。",
+      "collapsed": false
+    },
+    {
+      "id": "n-prereq",
+      "parent_id": "root",
+      "label": "渲染前置未齐：锁音、字幕、灯光",
+      "role": "claim",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-tasks",
+          "locator": "render依赖与各前置状态",
+          "cell_range": "A2:G9"
+        },
+        {
+          "source_id": "s-handover",
+          "locator": "第6–7行"
+        }
+      ],
+      "note": "渲染必须同时等待mix、captions_final、cue_review。未收到最终片段不能完成灯光提示匹配。",
+      "collapsed": false
+    },
+    {
+      "id": "n-mix",
+      "parent_id": "n-prereq",
+      "label": "Lin＝小林：23:50最早预计，未承诺",
+      "role": "open-question",
+      "support": "uncertain",
+      "source_refs": [
+        {
+          "source_id": "s-handover",
+          "locator": "第4行"
+        },
+        {
+          "source_id": "s-tasks",
+          "locator": "mix行",
+          "cell_range": "A2:G2"
+        }
+      ],
+      "note": "混音负责人唯一化为Lin／小林。2026-10-22T23:50:00+08:00为earliest_start；duration空白，external依赖未展开。需确认该时点是开始还是锁定完成、实际交付承诺及耗时；不能当成已锁音。",
+      "collapsed": false
+    },
+    {
+      "id": "n-final-captions",
+      "parent_id": "n-prereq",
+      "label": "最终字幕：锁音后定轴；负责人、耗时待确认",
+      "role": "step",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-handover",
+          "locator": "第6行"
+        },
+        {
+          "source_id": "s-tasks",
+          "locator": "captions_final行",
+          "cell_range": "A4:G4"
+        },
+        {
+          "source_id": "s-vendor",
+          "locator": "vendor-readme.txt 第2行（原件未附；所引原文保留）",
+          "quote": "字幕轨应与最终混音核对。此说明不改变主办方的提交门槛。"
+        }
+      ],
+      "note": "字幕文字草稿可先做，但最终时间轴必须在最终混音锁定后确认并核对。负责人未提供，耗时未确认。\n供应商附注安全短摘录（vendor-readme.txt第2行，原件未随包）：「字幕轨应与最终混音核对。此说明不改变主办方的提交门槛。」仅此摘录，不代表已附全文。",
+      "collapsed": false
+    },
+    {
+      "id": "n-cue",
+      "parent_id": "n-prereq",
+      "label": "灯光匹配：最终片段未收；负责人、耗时待确认",
+      "role": "step",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-handover",
+          "locator": "第7–9行"
+        },
+        {
+          "source_id": "s-tasks",
+          "locator": "cue_review行",
+          "cell_range": "A9:G9"
+        },
+        {
+          "source_id": "s-frame",
+          "locator": "底部限制文字"
+        }
+      ],
+      "note": "先确认最终片段由谁提供与交付时间，再核对灯光提示与最终片段匹配。cue_review依赖final_clip。粗剪单帧不能判断动态灯光或无闪烁；本次未完成这一检查。",
+      "collapsed": false
+    },
+    {
+      "id": "n-render",
+      "parent_id": "n-prereq",
+      "label": "Chen＝陈老师：锁音/字幕/灯光齐后渲染，估时25分",
+      "role": "step",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-handover",
+          "locator": "第4、7行"
+        },
+        {
+          "source_id": "s-tasks",
+          "locator": "render行",
+          "cell_range": "A5:G5"
+        }
+      ],
+      "note": "画面导出负责人唯一化为Chen／陈老师。25分钟为同机已有完整渲染记录，不是这次承诺。需确认最终版本、设置和机器安排是否适用；mix、captions_final、cue_review均完成后才开始最终渲染。",
+      "collapsed": false
+    },
+    {
+      "id": "n-release",
+      "parent_id": "root",
+      "label": "导出后：检查→批准→提交，不可跳过",
+      "role": "claim",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-notice",
+          "locator": "第5–6行"
+        },
+        {
+          "source_id": "s-tasks",
+          "locator": "qa/approve/submit依赖",
+          "cell_range": "A6:G8"
+        }
+      ],
+      "note": "v3只变更截止。完整画声检查与内容批准仍是最终提交门槛。三项不能因为预览不足或时间紧而记为完成。",
+      "collapsed": false
+    },
+    {
+      "id": "n-qa",
+      "parent_id": "n-release",
+      "label": "完整画声检查20分｜负责人待确认",
+      "role": "step",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-tasks",
+          "locator": "qa行",
+          "cell_range": "A6:G6"
+        },
+        {
+          "source_id": "s-notice",
+          "locator": "第5行"
+        }
+      ],
+      "note": "必须在最终导出完成后进行；现有SRT和单帧不是成片检查结果。负责人未提供；检查记录与合格结论尚无。",
+      "collapsed": false
+    },
+    {
+      "id": "n-approve",
+      "parent_id": "n-release",
+      "label": "内容批准｜批准人、耗时未确定",
+      "role": "open-question",
+      "support": "uncertain",
+      "source_refs": [
+        {
+          "source_id": "s-handover",
+          "locator": "第5行"
+        },
+        {
+          "source_id": "s-tasks",
+          "locator": "approve行",
+          "cell_range": "A7:G7"
+        },
+        {
+          "source_id": "s-vendor",
+          "locator": "vendor-readme.txt 第8行（原件未附；所引原文保留）",
+          "quote": "供应商没有提供最终成片，也没有批准内容的权限。"
+        }
+      ],
+      "note": "在qa完成后由有权限的批准人处理。需先指派最终内容批准人并确认耗时；供应商没有批准权限。字幕00:35–00:42说话人未确认，不据此推断批准人身份。\n供应商附注安全短摘录（vendor-readme.txt第8行，原件未随包）：「供应商没有提供最终成片，也没有批准内容的权限。」仅此摘录，不代表已附全文。",
+      "collapsed": false
+    },
+    {
+      "id": "n-submit",
+      "parent_id": "n-release",
+      "label": "最终提交｜负责人、上传耗时待确认",
+      "role": "step",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-tasks",
+          "locator": "submit行",
+          "cell_range": "A8:G8"
+        },
+        {
+          "source_id": "s-notice",
+          "locator": "第3、5行"
+        }
+      ],
+      "note": "依赖approve。提交需在上海2026-10-23 00:30前完成；上传耗时空白不得当作零。负责人未提供。本资料仅作演练，本次不实际上传或提交。",
+      "collapsed": false
+    },
+    {
+      "id": "n-preview",
+      "parent_id": "root",
+      "label": "预览：仅42秒字幕＋00:12单帧，原视频未交付",
+      "role": "caveat",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-handover",
+          "locator": "第8–9行"
+        },
+        {
+          "source_id": "s-subtitles",
+          "locator": "全部4条字幕",
+          "time_range": "00:00:00,000–00:00:42,000"
+        },
+        {
+          "source_id": "s-frame",
+          "locator": "完整原图"
+        }
+      ],
+      "note": "原视频96秒仅为交接记录所述，未以原媒体核实。全段原音视频未看/未听；42–96秒无提供字幕；最终片段未收到。现有预览不能验收其余时段、最终成片灯光变化或无闪烁。",
+      "collapsed": false,
+      "attachment_ids": [
+        "a-handover"
+      ]
+    },
+    {
+      "id": "n-frame",
+      "parent_id": "n-preview",
+      "label": "00:12粗剪原图｜仅单帧、非最终片段",
+      "role": "resource",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-frame",
+          "locator": "完整1200×700图；rough-cut v2 / 00:12与底部限制文字"
+        }
+      ],
+      "note": "用于辨认这一静态舞台示意帧和预览版本。图底明确说明不能据单帧判断动态灯光或无闪烁。原图完整嵌入，未裁切、未重绘。",
+      "collapsed": false,
+      "asset_id": "a-frame"
+    },
+    {
+      "id": "n-subtitles",
+      "parent_id": "n-preview",
+      "label": "00:00–00:42字幕｜只读转录、未听音视频",
+      "role": "resource",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-subtitles",
+          "locator": "4条字幕，第1–15行",
+          "time_range": "00:00:00,000–00:00:42,000"
+        }
+      ],
+      "note": "完整SRT保留原时间码。00:20–00:35标注Lin；00:35–00:42说话人仍未确认。文字标明rough-cut v2，不能代表最终字幕、原画面或最终混音。",
+      "collapsed": false,
+      "asset_id": "a-subtitles"
+    }
+  ],
+  "cross_links": [
+    {
+      "id": "r-mix-captions",
+      "from": "n-mix",
+      "to": "n-final-captions",
+      "label": "锁音后才定轴"
+    },
+    {
+      "id": "r-cue-render",
+      "from": "n-cue",
+      "to": "n-render",
+      "label": "灯光匹配为前置"
+    },
+    {
+      "id": "r-render-qa",
+      "from": "n-render",
+      "to": "n-qa",
+      "label": "导出后才检查"
+    }
+  ],
+  "audit": {
+    "review_version": "1.0",
+    "questions": [
+      {
+        "question": "现在能做什么？",
+        "status": "answered",
+        "node_ids": [
+          "n-now",
+          "n-draft",
+          "n-prep"
+        ]
+      },
+      {
+        "question": "谁还需要确认，哪些前置条件未满足？",
+        "status": "answered",
+        "node_ids": [
+          "n-mix",
+          "n-final-captions",
+          "n-cue",
+          "n-render",
+          "n-qa",
+          "n-approve",
+          "n-submit"
+        ]
+      },
+      {
+        "question": "按当前进度与现有估时能否赶上最后提交？",
+        "status": "answered",
+        "node_ids": [
+          "n-schedule",
+          "n-deadline",
+          "n-bound",
+          "n-reschedule"
+        ]
+      },
+      {
+        "question": "有哪些可用时间信息与预览入口，其覆盖边界是什么？",
+        "status": "answered",
+        "node_ids": [
+          "n-deadline",
+          "n-mix",
+          "n-preview",
+          "n-frame",
+          "n-subtitles"
+        ]
+      }
+    ],
+    "coverage": [
+      {
+        "source_id": "s-handover",
+        "read_scope": "全文第1–9行",
+        "unread_scope": "",
+        "method": "读取UTF-8全文并逐行核对身份、前置条件及覆盖边界",
+        "source_version": "记录时间2026-10-22 15:00 UTC+08:00",
+        "reason": "原件的逐字节副本已随包提供；相对plan.json的实际位置为assets/handover.md；SHA256已与读取时原件摘要核对。"
+      },
+      {
+        "source_id": "s-tasks",
+        "read_scope": "表头及全部8条任务A1:G9",
+        "unread_scope": "",
+        "method": "读取CSV全文并用csv模块解析；逐字段核对空值、耗时和依赖",
+        "source_version": "未标版本",
+        "reason": "原件的逐字节副本已随包提供；相对plan.json的实际位置为assets/tasks.csv；SHA256已与读取时原件摘要核对。"
+      },
+      {
+        "source_id": "s-notice",
+        "read_scope": "全文第1–6行",
+        "unread_scope": "",
+        "method": "读取UTF-8全文；用带时区datetime换算并保留v2替代关系",
+        "source_version": "Version 3；2026-10-22 08:00 UTC发布",
+        "reason": "原件的逐字节副本已随包提供；相对plan.json的实际位置为assets/organizer-notice-v3.txt；SHA256已与读取时原件摘要核对。"
+      },
+      {
+        "source_id": "s-vendor",
+        "read_scope": "全文第1–8行",
+        "unread_scope": "",
+        "method": "读取UTF-8全文；区分有效业务说明与复制调试指令；后者未执行、未成为业务事实",
+        "source_version": "未标版本",
+        "reason": "vendor-readme.txt原件未随包，避免传播与任务无关的复制调试指令。创建时已完整读取并核对原件SHA256；本次实际使用的第2、8行逐字短引文保存在相关节点source_refs.quote、原生备注及执行核对表。接收者可复核引文与所支持论断，无法仅凭此包独立核对未附原件的其余内容；原件需向原资料持有者取得。本演练没有发起联系。"
+      },
+      {
+        "source_id": "s-subtitles",
+        "read_scope": "全部4条字幕00:00:00,000–00:00:42,000",
+        "unread_scope": "",
+        "method": "读取SRT文字与时间码；未听原音频、未看原视频",
+        "source_version": "rough-cut v2，文字自述并由交接确认",
+        "reason": "原件的逐字节副本已随包提供；相对plan.json的实际位置为assets/rough-cut-first42s.srt；SHA256已与读取时原件摘要核对。"
+      },
+      {
+        "source_id": "s-frame",
+        "read_scope": "完整1200×700图片，包括标题、00:12与底部限制",
+        "unread_scope": "",
+        "method": "view_image目视原图；核对尺寸、完整边界与单帧说明",
+        "source_version": "rough-cut v2 / 00:12",
+        "reason": "原件的逐字节副本已随包提供；相对plan.json的实际位置为assets/cue-preview.png；SHA256已与读取时原件摘要核对。"
+      },
+      {
+        "source_id": "s-original-video",
+        "read_scope": "",
+        "unread_scope": "据交接为00:00–01:36的完整原视频，全段画面与声音未取得；总时长未媒体实测",
+        "method": "未读取；仅登记交接说明",
+        "reason": "用户输入未提供原视频"
+      },
+      {
+        "source_id": "s-final-clip",
+        "read_scope": "",
+        "unread_scope": "最终片段全部，时长未知",
+        "method": "未读取；仅登记任务表缺口",
+        "reason": "tasks.csv cue_review状态为最终片段尚未收到"
+      },
+      {
+        "source_id": "s-user",
+        "read_scope": "完整任务请求",
+        "unread_scope": "",
+        "method": "直接读取用户请求；保持上海、紧凑执行、保留时间/预览及演练范围"
+      }
+    ],
+    "decisions": [
+      {
+        "action": "merge",
+        "content": "Lin与小林、Chen与陈老师分别统一为一位负责人",
+        "reason": "handover第4行明确别名等同；没有合并其他未知姓名或说话人",
+        "node_ids": [
+          "n-mix",
+          "n-render"
+        ],
+        "source_ids": [
+          "s-handover",
+          "s-tasks"
+        ]
+      },
+      {
+        "action": "retain",
+        "content": "v3截止采用上海00:30，保留原JST、跨日和旧v2日期",
+        "reason": "通知第4行明确替代旧截止；只改截止，没有豁免门槛",
+        "node_ids": [
+          "n-deadline",
+          "n-release"
+        ],
+        "source_ids": [
+          "s-notice"
+        ]
+      },
+      {
+        "action": "downshift",
+        "content": "精确8项任务表、原CSV、交接和通知放入附件",
+        "reason": "主图保持执行判断与责任/阻塞，附件支持逐项核对，避免按文件目录分支",
+        "node_ids": [
+          "root",
+          "n-now",
+          "n-deadline",
+          "n-preview"
+        ],
+        "source_ids": [
+          "s-tasks",
+          "s-handover",
+          "s-notice"
+        ]
+      },
+      {
+        "action": "retain",
+        "content": "完整单帧与完整42秒SRT独立嵌入",
+        "reason": "保留版本、原时间码、图像空间关系和明确限制；不生成伪造视频入口",
+        "node_ids": [
+          "n-frame",
+          "n-subtitles",
+          "n-preview"
+        ],
+        "source_ids": [
+          "s-frame",
+          "s-subtitles"
+        ]
+      },
+      {
+        "action": "omit",
+        "content": "供应商复制调试指令不入图、不执行",
+        "reason": "与用户执行导图目标无关，来源文本不能扩大授权；仍记录全文已读、源哈希及所用业务行",
+        "source_ids": [
+          "s-vendor"
+        ]
+      },
+      {
+        "action": "retain",
+        "content": "已附五份原件使用真实相对来源路径；供应商原件未附，保留第2/8行短引文及原件摘要",
+        "reason": "接收者解压后即可复核已附来源；不把临时路径当作有效来源链接，不传播无关调试指令，也不将摘录冒充原件。",
+        "node_ids": [
+          "n-final-captions",
+          "n-approve"
+        ],
+        "source_ids": [
+          "s-handover",
+          "s-tasks",
+          "s-notice",
+          "s-subtitles",
+          "s-frame",
+          "s-vendor"
+        ]
+      }
+    ],
+    "issues": [
+      {
+        "id": "i-schedule",
+        "scope": "subject",
+        "severity": "blocking",
+        "status": "open",
+        "description": "按当前25分渲染和20分QA估时，极乐观QA完成00:35仍晚于00:30截止；未知环节会增加时间，缺少可达计划。",
+        "node_ids": [
+          "n-schedule",
+          "n-bound",
+          "n-reschedule"
+        ]
+      },
+      {
+        "id": "i-owners",
+        "scope": "subject",
+        "severity": "material",
+        "status": "open",
+        "description": "字幕草稿、最终字幕、灯光匹配、QA、批准与提交负责人未提供；混音/字幕/灯光/批准/上传耗时与承诺不完整。",
+        "node_ids": [
+          "n-draft",
+          "n-mix",
+          "n-final-captions",
+          "n-cue",
+          "n-qa",
+          "n-approve",
+          "n-submit"
+        ]
+      },
+      {
+        "id": "i-media",
+        "scope": "subject",
+        "severity": "material",
+        "status": "open",
+        "description": "原视频未交付，最终片段未收到；仅42秒字幕和00:12单帧不能完成灯光匹配或成片验收。",
+        "node_ids": [
+          "n-cue",
+          "n-preview",
+          "n-qa"
+        ]
+      },
+      {
+        "id": "i-native",
+        "scope": "deliverable",
+        "severity": "minor",
+        "status": "open",
+        "description": "当前未完成ODEN内视觉与保存重开验收；交付范围为内容审阅、静态格式与资源验证。",
+        "node_ids": [
+          "root"
+        ]
+      }
+    ],
+    "checks": {
+      "semantic": {
+        "status": "passed",
+        "reviewer": "AI自身审阅",
+        "evidence": "逐项对照6份已提供资料与20个节点、执行表：保留v3替代关系与不豁免门槛；仅合并明示别名；owner空白写待确认；保留所有未知耗时及未承诺状态；原图只支持单帧，字幕不代表看过视频；来源调试指令未执行。 可搬运修订只改变来源地址和短引用位置，节点数、依赖、排期判断不变；两条供应商quote已与原件逐字比对。"
+      },
+      "reader": {
+        "status": "passed",
+        "reviewer": "AI自身审阅",
+        "evidence": "已从execution-outline.md顺序回读所有可见标题：首分支回答按当前估时赶不上；现在准备、渲染前置、导出后门槛与有限预览分别可见；推导/建议/未知状态均在标题体现。详细任务和来源放附件与备注，未隐藏决定性冲突。"
+      },
+      "numbers_formulas": {
+        "status": "passed",
+        "reviewer": "Python datetime计算＋AI核对",
+        "evidence": "带固定时区计算：01:30 JST=00:30上海；新旧截止相差90分；23:50+25+20=次日00:35，晚5分；倒推45分链最晚23:45。所有未知耗时仍为未知。"
+      },
+      "resources": {
+        "status": "passed",
+        "reviewer": "AI目视＋Python实际检查",
+        "evidence": "完整目视1200×700原图，保留标题/00:12/单帧限制；Pillow实际verify通过。5个原件副本SHA256与输入一致；5个文本资产UTF-8可读；回读生成执行表并校对全部任务与时区；SRT解析确认4段00:00–00:42。原生资源引用另由编译/validate核验，未冒充ODEN内预览。 已核对五个source.uri相对plan.json实际存在且SHA256匹配；供应商原件没有嵌入或伪造路径。"
+      },
+      "native_runtime": {
+        "status": "not_run",
+        "reviewer": "当前工具环境",
+        "evidence": "未运行macOS ODEN；没有进行应用内打开、视觉检查、保存与重开；静态检查不能替代此验收。"
+      }
+    },
+    "calculations": [
+      {
+        "id": "c-deadline",
+        "expression": "2026-10-23 01:30 UTC+09:00 = 2026-10-23 00:30 UTC+08:00 = 2026-10-22 16:30 UTC",
+        "result": "2026-10-23T00:30:00+08:00",
+        "unit": "ISO8601时间",
+        "source_refs": [
+          {
+            "source_id": "s-notice",
+            "locator": "第3行"
+          }
+        ]
+      },
+      {
+        "id": "c-delay",
+        "expression": "23:50 + 25分钟渲染 + 20分钟QA = 次日00:35；00:35 - 00:30 = 5分钟",
+        "result_minutes": 5,
+        "assumption": "采用当前25分钟渲染估时；乐观假设23:50已经锁音、字幕与灯光无额外等待。不将缺失duration改成实际0。之后仍需批准及上传。",
+        "source_refs": [
+          {
+            "source_id": "s-tasks",
+            "locator": "A2:G9",
+            "cell_range": "A2:G9"
+          },
+          {
+            "source_id": "s-notice",
+            "locator": "第3、5–6行"
+          }
+        ]
+      },
+      {
+        "id": "c-latest",
+        "expression": "10/23 00:30 - 25分钟 - 20分钟 = 10/22 23:45",
+        "result": "2026-10-22T23:45:00+08:00",
+        "qualifier": "仅给已知45分钟串行段的最晚起点；还需为所有未知步骤/等待留余量。",
+        "source_refs": [
+          {
+            "source_id": "s-tasks",
+            "locator": "A5:G8",
+            "cell_range": "A5:G8"
+          },
+          {
+            "source_id": "s-notice",
+            "locator": "第3行"
+          }
+        ]
+      }
+    ],
+    "transformations": [
+      {
+        "asset_id": "a-checklist",
+        "record": {
+          "method": "AI语义归并与确定性时间核算；UTF-8 Markdown表格生成",
+          "parameters": {
+            "timezone": "UTC+08:00",
+            "originals_retained": [
+              "JST UTC+09:00",
+              "UTC"
+            ],
+            "missing_values": "保持未知；乐观边界不是实际0"
+          },
+          "tool_versions": {
+            "python": "3.12.14"
+          },
+          "checks": {
+            "visual": "不适用，无新图片",
+            "text": "已逐项回读生成表：8项任务、全部空值、负责人别名、依赖、版本替代、跨日时间与预览范围均对照来源；建议明确标AI综合。 可搬运修订：新增两段供应商逐字短引文和原件未附说明；逐字与原输入第2、8行比对，未新增业务主张或资源。"
+          },
+          "output": {
+            "sha256": "2163832748d4970e2bcab6c1324533647e89eb993e799d1da60cdedd02b8009d"
+          }
+        }
+      }
+    ],
+    "omitted": [
+      {
+        "content": "逐字复述临时旁白与供应商复制调试内容",
+        "reason": "字幕原件保留可检索文本；与决策无关内容不常驻画布。"
+      }
+    ],
+    "uncertainties": [
+      "混音23:50是earliest_start字段而非完成承诺；耗时未给。",
+      "25分钟仅为已有同机记录，最终渲染是否同耗时未确认。",
+      "原视频96秒是交接转述，未用媒体核验。",
+      "所有任务状态来自给定记录，不是实时项目查询。"
+    ],
+    "semantic_review": {
+      "goal_fit": "四个必答问题均有明确节点；业务无法按当前估时准时的结论已回答。",
+      "facts_conditions": "保留估时、未知耗时、锁音时点语义歧义和媒体覆盖边界；不把业务缺口记成图内容错误。",
+      "structure": "20个内容节点，5个主分支；3条非树依赖；全部任务完整保存在核对表。",
+      "compression": "别名合并；重复门槛归并；完整任务细节下沉附件；单帧与字幕仅各一个资源节点。",
+      "traceability": "关键主张保留行号/单元格/时间码；五份原件使用真实随包相对路径，SHA256与读取时一致。供应商原件未附，实际使用的两条quote与原件逐字比对并在节点备注可见；保留未附边界。"
+    },
+    "portability": {
+      "source_uri_base": "plan.json所在目录",
+      "bundled_originals": {
+        "s-handover": "assets/handover.md",
+        "s-tasks": "assets/tasks.csv",
+        "s-notice": "assets/organizer-notice-v3.txt",
+        "s-subtitles": "assets/rough-cut-first42s.srt",
+        "s-frame": "assets/cue-preview.png"
+      },
+      "unbundled_source": "s-vendor",
+      "unbundled_source_reason": "vendor-readme.txt原件未随包，避免传播与任务无关的复制调试指令。创建时已完整读取并核对原件SHA256；本次实际使用的第2、8行逐字短引文保存在相关节点source_refs.quote、原生备注及执行核对表。接收者可复核引文与所支持论断，无法仅凭此包独立核对未附原件的其余内容；原件需向原资料持有者取得。本演练没有发起联系。",
+      "vendor_quote_lines": [
+        2,
+        8
+      ],
+      "vendor_quotes_are_original_file": false,
+      "content_node_count_unchanged": 20,
+      "asset_count_unchanged": 6,
+      "initial_candidate_preserved": true
+    }
+  }
+}

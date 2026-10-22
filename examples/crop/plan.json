@@ -1,0 +1,240 @@
+{
+  "plan_version": "1.0",
+  "document_id": "synthetic-crop-chain",
+  "title": "裁片与完整来源链路（合成集成示例）",
+  "goal": {
+    "question": "裁片是否保留性能数字的单位和非端到端范围？",
+    "purpose": "explain",
+    "must_answer": [
+      "裁片是否保留性能数字的单位和非端到端范围？"
+    ]
+  },
+  "sources": [
+    {
+      "id": "s-timing",
+      "title": "合成核心推理计时原图",
+      "kind": "image",
+      "uri": "originals/core-timing.png",
+      "status": "read",
+      "coverage": "全图1260×770，数字、单位、标题和黄色脚注均查看",
+      "sha256": "385d734ec8ff28e4b00e6765c8bfa1d723ee0f74f6443d79b196ed16d65f46cc"
+    }
+  ],
+  "assets": [
+    {
+      "id": "crop",
+      "path": "assets/timing-crop.png",
+      "name": "核心计时与范围裁片.png",
+      "kind": "image",
+      "alt": "完整两行数字和原始ms/µs单位；保留非端到端与未包含冷启动的脚注",
+      "source_refs": [
+        {
+          "source_id": "s-timing",
+          "locator": "原图35,30至1225,735像素边缘；保留整个表与黄色脚注",
+          "region": {
+            "coordinate_system": "stored_image_pixels_top_left",
+            "bbox": [
+              35,
+              30,
+              1225,
+              735
+            ]
+          }
+        }
+      ],
+      "derivation": {
+        "kind": "crop",
+        "note": "仅裁去外围背景；无重绘或数值修改"
+      },
+      "sha256": "f42a35e6baf0cfe38d8ffee805678d8711d650164892559333ba1af382280183"
+    },
+    {
+      "id": "original",
+      "path": "originals/core-timing.png",
+      "name": "完整合成原图.png",
+      "kind": "image",
+      "alt": "合成核心推理计时完整原图",
+      "source_refs": [
+        {
+          "source_id": "s-timing",
+          "locator": "全图"
+        }
+      ],
+      "derivation": {
+        "kind": "original",
+        "note": "保留原件供比较裁片"
+      },
+      "sha256": "385d734ec8ff28e4b00e6765c8bfa1d723ee0f74f6443d79b196ed16d65f46cc"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "root",
+      "parent_id": null,
+      "label": "核心推理计时不能证明端到端达标",
+      "role": "root",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-timing",
+          "locator": "原图35,30至1225,735像素边缘；保留整个表与黄色脚注",
+          "region": {
+            "coordinate_system": "stored_image_pixels_top_left",
+            "bbox": [
+              35,
+              30,
+              1225,
+              735
+            ]
+          }
+        }
+      ],
+      "note": "这是素材准备、审阅和原生封装的集成示例；原图为合成数据。性能原件随附。",
+      "attachment_ids": [
+        "original"
+      ]
+    },
+    {
+      "id": "figure",
+      "parent_id": "root",
+      "label": "裁片：原始单位和计时范围同时保留",
+      "role": "resource",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-timing",
+          "locator": "原图35,30至1225,735像素边缘；保留整个表与黄色脚注",
+          "region": {
+            "coordinate_system": "stored_image_pixels_top_left",
+            "bbox": [
+              35,
+              30,
+              1225,
+              735
+            ]
+          }
+        }
+      ],
+      "asset_id": "crop",
+      "note": "已查看实际输出：无标题、单位、脚注缺失；不把核心计时替换为端到端测量。"
+    }
+  ],
+  "audit": {
+    "review_version": "1.0",
+    "questions": [
+      {
+        "question": "裁片是否保留性能数字的单位和非端到端范围？",
+        "status": "answered",
+        "node_ids": [
+          "root",
+          "figure"
+        ]
+      }
+    ],
+    "coverage": [
+      {
+        "source_id": "s-timing",
+        "read_scope": "完整1260×770原图，以及1190×705实际裁片",
+        "unread_scope": "",
+        "method": "原图/裁片分别目视；真实像素、坐标及摘要记录由工具产生"
+      }
+    ],
+    "issues": [],
+    "decisions": [
+      {
+        "action": "retain",
+        "content": "原始单位与非端到端脚注",
+        "reason": "数字的适用范围依赖脚注，不允许裁掉",
+        "node_ids": [
+          "figure"
+        ],
+        "source_ids": [
+          "s-timing"
+        ]
+      }
+    ],
+    "checks": {
+      "semantic": {
+        "status": "passed",
+        "reviewer": "AI自身核对与工具验证",
+        "evidence": "原图计时终点和排除项与主干结论一致，没有增加新性能断言。"
+      },
+      "reader": {
+        "status": "passed",
+        "reviewer": "AI自身核对与工具验证",
+        "evidence": "主干明确非端到端，资源保留所有数字和脚注。"
+      },
+      "numbers_formulas": {
+        "status": "passed",
+        "reviewer": "AI自身核对与工具验证",
+        "evidence": "逐项对照两行30/75 ms和42000/68000 µs；本例不作额外计算。"
+      },
+      "resources": {
+        "status": "passed",
+        "reviewer": "AI自身核对与工具验证",
+        "evidence": "原图与裁片均已查看；裁片1190×705，完整保留标题、表头、两行、原始单位和黄色限定框。"
+      },
+      "native_runtime": {
+        "status": "not_run",
+        "reviewer": "AI自身核对与工具验证",
+        "evidence": "当前环境无macOS ODEN，未验收应用内显示和保存重开。"
+      }
+    },
+    "transformations": [
+      {
+        "asset_id": "crop",
+        "record": {
+          "record_version": "2.0",
+          "operation": "crop-image",
+          "source": {
+            "name": "core-timing.png",
+            "sha256": "385d734ec8ff28e4b00e6765c8bfa1d723ee0f74f6443d79b196ed16d65f46cc",
+            "size": [
+              1260,
+              770
+            ],
+            "exif_orientation": 1,
+            "frame": 0,
+            "frames": 1,
+            "id": "s-timing",
+            "path": "originals/core-timing.png",
+            "path_scope": "example-plan-relative"
+          },
+          "coordinates": {
+            "system": "top-left EXIF-oriented display pixels; right/bottom exclusive",
+            "display_size": [
+              1260,
+              770
+            ],
+            "box": [
+              35,
+              30,
+              1225,
+              735
+            ]
+          },
+          "color": {
+            "input_mode": "RGB",
+            "output_mode": "RGB",
+            "icc_retained": false,
+            "color_conversion": false,
+            "note": "Palette expansion/1-bit expansion is possible; no ICC profile conversion is performed."
+          },
+          "tool": {
+            "name": "Pillow",
+            "version": "12.3.0"
+          },
+          "output": {
+            "path": "crop.png",
+            "sha256": "f42a35e6baf0cfe38d8ffee805678d8711d650164892559333ba1af382280183",
+            "width": 1190,
+            "height": 705,
+            "bytes": 53876,
+            "format": "PNG"
+          },
+          "semantic_review": "Required: check captions, axes, units, legends and footnotes; crop mechanics do not prove completeness."
+        }
+      }
+    ]
+  }
+}

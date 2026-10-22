@@ -1,0 +1,26 @@
+{
+  "lease": "从next复制",
+  "goal_rev": 1,
+  "results": [
+    {
+      "chunk_id": "从next复制",
+      "summary": "简短命题并保留条件",
+      "room": "主题/边界",
+      "keywords": [
+        "关键词"
+      ],
+      "coverage": "read",
+      "claims": [
+        {
+          "text": "来源支持的具体事实",
+          "kind": "fact",
+          "quote": "从当前块精确截取的短引文",
+          "qualifiers": [
+            "实际适用条件"
+          ]
+        }
+      ],
+      "unresolved": []
+    }
+  ]
+}

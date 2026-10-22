@@ -1,0 +1,9 @@
+{
+  "queries": [
+    "subject and metric",
+    "decisive conditions and counterevidence"
+  ],
+  "budget_bytes": 16000,
+  "max_cards": 16,
+  "mode": "full"
+}

@@ -1,0 +1,479 @@
+{
+  "plan_version": "1.0",
+  "document_id": "synthetic-exponential-smoothing-demo",
+  "title": "指数平滑：更新、参数与边界（合成示例）",
+  "goal": {
+    "purpose": "learn",
+    "question": "理解简单指数平滑如何更新、参数如何影响响应以及适用边界",
+    "reader": "有基础数学知识的学习者",
+    "detail": "balanced",
+    "must_answer": [
+      "怎样计算一次更新？",
+      "alpha改变什么？",
+      "这个例子不能证明什么？"
+    ],
+    "assumptions": [
+      "全部材料为合成教学示例"
+    ]
+  },
+  "sources": [
+    {
+      "id": "s-lesson",
+      "title": "合成教学讲义",
+      "kind": "text",
+      "uri": "example-data/lesson.md",
+      "status": "read",
+      "coverage": "全文",
+      "sha256": "2a4bf42df4d5d63119403b39fa95a5f60124c0e74b6638d4bfe8492652596bd6"
+    },
+    {
+      "id": "s-data",
+      "title": "合成观测序列",
+      "kind": "spreadsheet",
+      "uri": "example-data/observations.csv",
+      "status": "read",
+      "coverage": "表头与全部七行",
+      "sha256": "87ccdf757e37427ced443d5e06a3637f0cb470e5ea06e279d18759ce05a01a8c"
+    }
+  ],
+  "assets": [
+    {
+      "id": "a-chart",
+      "path": "example-data/response.png",
+      "kind": "image",
+      "name": "合成数据参数响应.png",
+      "alt": "相同初值下，alpha为0.2与0.8的更新曲线，含观测、图例和单位",
+      "source_refs": [
+        {
+          "source_id": "s-data",
+          "locator": "第2–8行：七个合成观测值"
+        },
+        {
+          "source_id": "s-lesson",
+          "locator": "参数与辅助材料"
+        }
+      ],
+      "derivation": {
+        "kind": "redraw",
+        "note": "按讲义递推公式由全部七行合成数据计算；相同初值100；不是来源原图"
+      },
+      "sha256": "ebd42a00f7def78e473f439e2b390807296d239a6628a5c34acd537626df069c"
+    },
+    {
+      "id": "a-table",
+      "path": "example-data/response-table.md",
+      "kind": "text",
+      "name": "合成数据参数响应.md",
+      "source_refs": [
+        {
+          "source_id": "s-data",
+          "locator": "第2–8行：七个合成观测值"
+        }
+      ],
+      "derivation": {
+        "kind": "generated",
+        "note": "逐行递推并显示4位小数；不是独立实验"
+      },
+      "sha256": "8965ada5185aecb4eb94bbafae4202a010a046751cd553e8e47a5d43a60d9d52"
+    },
+    {
+      "id": "a-data",
+      "path": "example-data/observations.csv",
+      "kind": "file",
+      "name": "合成观测值.csv",
+      "source_refs": [
+        {
+          "source_id": "s-data",
+          "locator": "第2–8行：七个合成观测值"
+        }
+      ],
+      "derivation": {
+        "kind": "original",
+        "note": "完整合成序列"
+      },
+      "sha256": "87ccdf757e37427ced443d5e06a3637f0cb470e5ea06e279d18759ce05a01a8c"
+    },
+    {
+      "id": "a-lesson",
+      "path": "example-data/lesson.md",
+      "kind": "text",
+      "name": "合成教学讲义.md",
+      "source_refs": [
+        {
+          "source_id": "s-lesson",
+          "locator": "全文"
+        }
+      ],
+      "derivation": {
+        "kind": "original",
+        "note": "完整合成讲义"
+      },
+      "sha256": "2a4bf42df4d5d63119403b39fa95a5f60124c0e74b6638d4bfe8492652596bd6"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "root",
+      "parent_id": null,
+      "label": "指数平滑：如何更新与选择参数",
+      "role": "root",
+      "support": "structure",
+      "source_refs": [],
+      "note": "合成示例。演示节点、公式、资源、附件与溯源；不代表真实研究或最优参数结论。",
+      "attachment_ids": [
+        "a-lesson"
+      ]
+    },
+    {
+      "id": "update",
+      "parent_id": "root",
+      "label": "更新规则：新观测与旧水平加权",
+      "role": "concept",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-lesson",
+          "locator": "更新规则"
+        }
+      ],
+      "body": [
+        {
+          "kind": "equation",
+          "latex": "\\ell_t = \\alpha y_t + (1-\\alpha)\\ell_{t-1}"
+        }
+      ],
+      "note": "y_t：本期观测；l_t：本期水平；alpha：本期观测权重。公式按讲义保留。"
+    },
+    {
+      "id": "range",
+      "parent_id": "update",
+      "label": "参数范围与初值必须一同保留",
+      "role": "caveat",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-lesson",
+          "locator": "更新规则"
+        }
+      ],
+      "body": [
+        {
+          "kind": "equation",
+          "latex": "0 < \\alpha < 1,\\quad \\ell_1=y_1"
+        }
+      ]
+    },
+    {
+      "id": "calculate",
+      "parent_id": "update",
+      "label": "算一次：100 更新为 106",
+      "role": "step",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-lesson",
+          "locator": "算一次"
+        }
+      ],
+      "body": [
+        {
+          "kind": "equation",
+          "latex": "0.3\\times120+0.7\\times100=106"
+        }
+      ]
+    },
+    {
+      "id": "parameter",
+      "parent_id": "root",
+      "label": "alpha 越大，当前观测权重越大",
+      "role": "concept",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-lesson",
+          "locator": "参数"
+        }
+      ],
+      "note": "较小值更平滑、较大值更跟随新值，应结合具体目标与验证比较。"
+    },
+    {
+      "id": "chart",
+      "parent_id": "parameter",
+      "label": "图示：相同初值下的两种响应",
+      "role": "resource",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-data",
+          "locator": "第2–8行：七个合成观测值"
+        },
+        {
+          "source_id": "s-lesson",
+          "locator": "辅助材料"
+        }
+      ],
+      "asset_id": "a-chart",
+      "attachment_ids": [
+        "a-data"
+      ],
+      "note": "由合成数据重绘；保留坐标与图例。图的用途是比较响应差异，不能据此认定某参数最优。"
+    },
+    {
+      "id": "table",
+      "parent_id": "chart",
+      "label": "精确数值：可复核每期更新",
+      "role": "resource",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-data",
+          "locator": "第2–8行：七个合成观测值"
+        }
+      ],
+      "asset_id": "a-table",
+      "collapsed": true
+    },
+    {
+      "id": "optimal",
+      "parent_id": "parameter",
+      "label": "尚不能确定最优 alpha",
+      "role": "open-question",
+      "support": "uncertain",
+      "source_refs": [
+        {
+          "source_id": "s-lesson",
+          "locator": "参数"
+        }
+      ],
+      "note": "材料没有定义目标损失或提供验证集。后续需明确误差指标并验证，不能把更快响应等同于更好。"
+    },
+    {
+      "id": "boundary",
+      "parent_id": "root",
+      "label": "此形式不单独建模趋势或季节性",
+      "role": "caveat",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-lesson",
+          "locator": "边界"
+        }
+      ],
+      "note": "保留适用边界，避免将简单水平更新解释为包含趋势与季节项的模型。"
+    }
+  ],
+  "cross_links": [
+    {
+      "id": "r-chart-limit",
+      "from": "chart",
+      "to": "optimal",
+      "label": "仅展示响应差异，未证明最优"
+    }
+  ],
+  "audit": {
+    "questions": [
+      {
+        "question": "怎样计算一次更新？",
+        "status": "answered",
+        "node_ids": [
+          "update",
+          "range",
+          "calculate"
+        ]
+      },
+      {
+        "question": "alpha改变什么？",
+        "status": "answered",
+        "node_ids": [
+          "parameter",
+          "chart"
+        ]
+      },
+      {
+        "question": "这个例子不能证明什么？",
+        "status": "answered",
+        "node_ids": [
+          "optimal",
+          "boundary"
+        ]
+      }
+    ],
+    "omitted": [
+      "未展开无关的预测模型目录；表格不逐行复制为文本节点"
+    ],
+    "uncertainties": [
+      "最优参数未被材料确定"
+    ],
+    "semantic_review": "检查公式、初值、数值106、合成性质及非最优结论；实际ODEN显示另行验收",
+    "review_version": "1.0",
+    "coverage": [
+      {
+        "source_id": "s-lesson",
+        "read_scope": "全文；更新规则、参数、边界、算一次和辅助材料",
+        "unread_scope": "",
+        "method": "逐段读取并核对符号定义与条件"
+      },
+      {
+        "source_id": "s-data",
+        "read_scope": "表头与全部7行",
+        "unread_scope": "",
+        "method": "CSV结构化读取，全部递推值重新计算"
+      }
+    ],
+    "decisions": [
+      {
+        "action": "downshift",
+        "content": "完整七期数值",
+        "reason": "主干解释参数意义，精确逐期值保留Markdown表，不逐行建节点",
+        "node_ids": [
+          "chart",
+          "table"
+        ],
+        "source_ids": [
+          "s-data"
+        ]
+      },
+      {
+        "action": "retain",
+        "content": "最优参数未确定与模型边界",
+        "reason": "避免把响应更快写成普遍更好",
+        "node_ids": [
+          "optimal",
+          "boundary"
+        ],
+        "source_ids": [
+          "s-lesson"
+        ]
+      }
+    ],
+    "issues": [
+      {
+        "id": "i-optimum",
+        "scope": "subject",
+        "severity": "material",
+        "status": "open",
+        "description": "材料没有验证集和目标损失，不能确定最优参数",
+        "node_ids": [
+          "optimal"
+        ]
+      }
+    ],
+    "checks": {
+      "semantic": {
+        "status": "passed",
+        "reviewer": "AI自身审阅与确定性算术核对",
+        "evidence": "核对讲义全文、0<alpha<1、初值、变量定义、106、非最优结论及不单独建模趋势季节项。"
+      },
+      "reader": {
+        "status": "passed",
+        "reviewer": "AI自身审阅与确定性算术核对",
+        "evidence": "主干分别回答更新、参数、边界；没有把最优结论藏入资料。"
+      },
+      "numbers_formulas": {
+        "status": "passed",
+        "reviewer": "AI自身审阅与确定性算术核对",
+        "evidence": "全部七行在alpha=.2/.8下重新递推，与Markdown四位小数逐项一致；.3*120+.7*100=106。原生公式语法/显示仍待ODEN内检验。"
+      },
+      "resources": {
+        "status": "passed",
+        "reviewer": "AI自身审阅与确定性算术核对",
+        "evidence": "原件摘要一致；Markdown表逐行核对；图已目视检查坐标、图例和合成/非最优脚注。"
+      },
+      "native_runtime": {
+        "status": "not_run",
+        "reviewer": "AI自身审阅与确定性算术核对",
+        "evidence": "当前环境没有可运行的macOS ODEN，未做打开/编辑/保存/重开。"
+      }
+    },
+    "calculations": [
+      {
+        "method": "l_t=alpha*y_t+(1-alpha)*l_(t-1)",
+        "inputs": {
+          "observations": [
+            100.0,
+            120.0,
+            95.0,
+            115.0,
+            105.0,
+            130.0,
+            110.0
+          ],
+          "initial": 100.0,
+          "alphas": [
+            0.2,
+            0.8
+          ]
+        },
+        "results": {
+          "0.2": [
+            100.0,
+            104.0,
+            102.2,
+            104.76,
+            104.808,
+            109.84640000000002,
+            109.87712000000002
+          ],
+          "0.8": [
+            100.0,
+            116.0,
+            99.19999999999999,
+            111.83999999999999,
+            106.368,
+            125.27359999999999,
+            113.05471999999999
+          ]
+        },
+        "rounding": "计算保留浮点精度，Markdown显示四位小数",
+        "scope": "合成演示，不是最优参数实验"
+      }
+    ],
+    "transformations": [
+      {
+        "asset_id": "a-chart",
+        "record": {
+          "method": "用Matplotlib确定性绘制合成观测与两条递推曲线",
+          "parameters": {
+            "source": "example-data/observations.csv",
+            "alpha": [
+              0.2,
+              0.8
+            ],
+            "initial": 100,
+            "figure_inches": [
+              8,
+              4.5
+            ],
+            "dpi": 180,
+            "source_script": "本次build_example.py",
+            "synthetic": true
+          },
+          "tool_versions": {
+            "Python": "3.12.14",
+            "Matplotlib": "3.10.8"
+          },
+          "checks": "已查看输出；图例、坐标和底部合成/非最优说明完整"
+        }
+      },
+      {
+        "asset_id": "a-table",
+        "record": {
+          "method": "从全部7行合成数据递推并输出Markdown表",
+          "parameters": {
+            "source": "example-data/observations.csv",
+            "alpha": [
+              0.2,
+              0.8
+            ],
+            "initial": 100,
+            "decimal_places": 4
+          },
+          "tool_versions": {
+            "Python": "3.12.14"
+          },
+          "checks": "按原CSV重新计算，逐行核对四位小数"
+        }
+      }
+    ]
+  }
+}

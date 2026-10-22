@@ -1,0 +1,16 @@
+name: Feature request
+description: Describe the user problem and a focused improvement.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What task is difficult today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior and trade-offs
+      description: Include privacy, context cost and evidence-completeness considerations.
+    validations:
+      required: true

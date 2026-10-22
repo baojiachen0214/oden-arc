@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oden-arc"
+dynamic = ["version"]
+description = "Evidence-first Agent Skill and local tools for OdenMap"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE", "NOTICE.md", "THIRD_PARTY.md"]
+authors = [{name = "Oden ARC contributors"}]
+keywords = ["agent-skills", "mind-map", "evidence", "multimodal", "oden-map"]
+dependencies = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://baojiachen0214.github.io/oden-website/"
+Repository = "https://github.com/baojiachen0214/oden-arc"
+Issues = "https://github.com/baojiachen0214/oden-arc/issues"
+
+[project.optional-dependencies]
+images = ["Pillow>=10.4,<13"]
+pdf = ["Pillow>=10.4,<13", "PyMuPDF>=1.24,<2"]
+test = ["jsonschema>=4.20,<5"]
+
+[project.scripts]
+oden-arc = "oden_arc.cli:main"
+oden-arc-memory = "oden_arc.memory_cli:main"
+oden-arc-assets = "oden_arc.media:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "oden_arc.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

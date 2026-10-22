@@ -1,0 +1,959 @@
+{
+  "plan_version": "1.0",
+  "document_id": "campus-recycling-sorting-decision-v02",
+  "title": "校园回收物分拣：优先复测与演示准入（合成）",
+  "goal": {
+    "purpose": "decide",
+    "question": "用合成试验材料选择下周优先复测算法，并判断演示准入与验收缺口",
+    "reader": "校园分拣演示团队",
+    "detail": "compact",
+    "must_answer": [
+      "下周应该优先验证哪个算法？",
+      "能不能直接用于正式演示？",
+      "还有哪些验收没过？",
+      "是否保留可编辑的正确率计算和有用的性能原图，并避免逐行节点？"
+    ],
+    "assumptions": [
+      "全部输入仅为内部演练用合成资料。",
+      "“下周”沿用用户材料的相对时间，不将合成日期扩写成承诺日期。",
+      "优先复测建议与正式准入分别判断；不虚构新测试。"
+    ]
+  },
+  "sources": [
+    {
+      "id": "s-requirements",
+      "title": "回收物分拣演示要求",
+      "kind": "text",
+      "uri": "assets/demo-requirements.md",
+      "status": "read",
+      "coverage": "全文第1–8行",
+      "sha256": "ab22de20838f564afd604f2caf59926fafe9ea5b1314173241fba4f8b04ab7e9"
+    },
+    {
+      "id": "s-method",
+      "title": "试验记录与计算约定",
+      "kind": "text",
+      "uri": "assets/test-method.md",
+      "status": "read",
+      "coverage": "全文第1–9行",
+      "sha256": "eb600e41fed0a17b0143df999cbab767741d27e2539c17900f5b2722b078b094"
+    },
+    {
+      "id": "s-runs",
+      "title": "分类试验原始计数",
+      "kind": "spreadsheet",
+      "uri": "assets/classification-runs.csv",
+      "status": "read",
+      "coverage": "表头与全部4条记录；A1:F5",
+      "sha256": "ffb1c2824b60ee789693fa271a1a6a94d96f91fc6b4467e421c768b18feee6bf"
+    },
+    {
+      "id": "s-timing",
+      "title": "核心推理计时原图",
+      "kind": "image",
+      "uri": "assets/core-timing.png",
+      "status": "read",
+      "coverage": "完整1260×770像素图：标题、两行计时、单位、范围与样本说明",
+      "sha256": "385d734ec8ff28e4b00e6765c8bfa1d723ee0f74f6443d79b196ed16d65f46cc"
+    }
+  ],
+  "assets": [
+    {
+      "id": "a-requirements",
+      "path": "assets/demo-requirements.md",
+      "kind": "text",
+      "name": "demo-requirements.md",
+      "source_refs": [
+        {
+          "source_id": "s-requirements",
+          "locator": "全文第1–8行"
+        }
+      ],
+      "derivation": {
+        "kind": "original",
+        "note": "逐字节复制输入原件；未改写、裁剪或重绘。"
+      },
+      "sha256": "ab22de20838f564afd604f2caf59926fafe9ea5b1314173241fba4f8b04ab7e9"
+    },
+    {
+      "id": "a-method",
+      "path": "assets/test-method.md",
+      "kind": "text",
+      "name": "test-method.md",
+      "source_refs": [
+        {
+          "source_id": "s-method",
+          "locator": "全文第1–9行"
+        }
+      ],
+      "derivation": {
+        "kind": "original",
+        "note": "逐字节复制输入原件；未改写、裁剪或重绘。"
+      },
+      "sha256": "eb600e41fed0a17b0143df999cbab767741d27e2539c17900f5b2722b078b094"
+    },
+    {
+      "id": "a-runs",
+      "path": "assets/classification-runs.csv",
+      "kind": "file",
+      "name": "classification-runs.csv",
+      "source_refs": [
+        {
+          "source_id": "s-runs",
+          "locator": "表头与全部4条记录；A1:F5"
+        }
+      ],
+      "derivation": {
+        "kind": "original",
+        "note": "逐字节复制输入原件；未改写、裁剪或重绘。"
+      },
+      "sha256": "ffb1c2824b60ee789693fa271a1a6a94d96f91fc6b4467e421c768b18feee6bf"
+    },
+    {
+      "id": "a-timing",
+      "path": "assets/core-timing.png",
+      "kind": "image",
+      "name": "core-timing.png",
+      "source_refs": [
+        {
+          "source_id": "s-timing",
+          "locator": "完整1260×770像素图：标题、两行计时、单位、范围与样本说明"
+        }
+      ],
+      "derivation": {
+        "kind": "original",
+        "note": "逐字节复制输入原件；未改写、裁剪或重绘。"
+      },
+      "sha256": "385d734ec8ff28e4b00e6765c8bfa1d723ee0f74f6443d79b196ed16d65f46cc",
+      "alt": "合成核心推理计时原图：Rook v2均值30 ms、p95 75 ms；Sable v1均值42000 µs、p95 68000 µs。每算法100次，范围为解码图像输入至分类结果输出；不含相机采集、图像解码、分拣触发信号与冷启动。"
+    },
+    {
+      "id": "a-comparison",
+      "path": "assets/comparison.md",
+      "kind": "text",
+      "name": "comparison.md",
+      "source_refs": [
+        {
+          "source_id": "s-runs",
+          "locator": "A1:F5，全部四批计数"
+        },
+        {
+          "source_id": "s-method",
+          "locator": "第4–9行"
+        },
+        {
+          "source_id": "s-requirements",
+          "locator": "第4–8行"
+        },
+        {
+          "source_id": "s-timing",
+          "locator": "完整计时表与黄色范围说明"
+        }
+      ],
+      "derivation": {
+        "kind": "calculation",
+        "note": "由原始计数进行分母一致的总体计算及50/50标准化；核心性能从原图转录，µs除以1000换算为ms。派生摘要不是新试验。"
+      },
+      "sha256": "76d9af0a53222e5e63a1095ea86f79108eb679a03a881c3fe221b615f7e9d92c"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "root",
+      "parent_id": null,
+      "label": "校园回收物分拣：下周验证决策（合成）",
+      "role": "root",
+      "support": "structure",
+      "source_refs": [
+        {
+          "source_id": "s-requirements",
+          "locator": "第4–8行"
+        }
+      ],
+      "collapsed": false,
+      "note": "目标：选定下周优先复测算法，判断正式演示能否准入，并标明未通过的验收。全部数据、产品名与日期为用户提供的内部演练合成资料。只使用给定4份输入。",
+      "attachment_ids": [
+        "a-requirements",
+        "a-method"
+      ]
+    },
+    {
+      "id": "priority",
+      "parent_id": "root",
+      "label": "建议先复测 Sable v1；尚未准入",
+      "role": "claim",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-runs",
+          "locator": "A1:F5；四条记录，按算法合计"
+        },
+        {
+          "source_id": "s-method",
+          "locator": "第4–9行"
+        },
+        {
+          "source_id": "s-requirements",
+          "locator": "第4–8行"
+        }
+      ],
+      "collapsed": false,
+      "note": "AI综合建议，依据是目标两类各半，Sable在两类内均较高，标准化估计87.5%高于Rook的80%；这不证明新数据上的优势，也不代表达到90%门槛。不能仅凭不同比例样本的88%与83%做选择。"
+    },
+    {
+      "id": "priority-evidence",
+      "parent_id": "priority",
+      "label": "两类内均较高；非同批优势仍待复测",
+      "role": "claim",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-runs",
+          "locator": "A1:F5；四条记录，按算法合计"
+        },
+        {
+          "source_id": "s-method",
+          "locator": "第4–9行"
+        }
+      ],
+      "collapsed": false,
+      "body": [
+        {
+          "kind": "paragraph",
+          "inlines": [
+            {
+              "kind": "text",
+              "text": "透明瓶：Sable 95% / Rook 90%；压扁瓶：80% / 70%。"
+            }
+          ]
+        }
+      ],
+      "note": "正确率由CSV逐类计数计算。四批图像不同，照明和设备一致，未做随机配对实验；不声称统计显著、因果优势或一定可迁移。"
+    },
+    {
+      "id": "comparison",
+      "parent_id": "priority",
+      "label": "精确比较表｜原始计数随附",
+      "role": "resource",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-runs",
+          "locator": "A1:F5；四条记录，按算法合计"
+        },
+        {
+          "source_id": "s-method",
+          "locator": "第4–9行"
+        },
+        {
+          "source_id": "s-requirements",
+          "locator": "第4–8行"
+        },
+        {
+          "source_id": "s-timing",
+          "locator": "完整原图：上方计时表和下方黄色范围说明；1260×770像素"
+        }
+      ],
+      "collapsed": false,
+      "asset_id": "a-comparison",
+      "attachment_ids": [
+        "a-runs"
+      ],
+      "note": "本次派生摘要，供核对分母、构成、版本及单位。完整CSV作为附件，不把4条试验记录逐行展开成节点。"
+    },
+    {
+      "id": "accuracy",
+      "parent_id": "root",
+      "label": "可编辑正确率：分清总体与目标配比",
+      "role": "concept",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-method",
+          "locator": "第5–7行"
+        }
+      ],
+      "collapsed": false,
+      "body": [
+        {
+          "kind": "equation",
+          "latex": "A_{\\mathrm{pool}}=\\frac{\\sum_i c_i}{\\sum_i n_i},\\quad \\sum_i n_i>0"
+        }
+      ],
+      "note": "c_i为第i类/批次的正确张数，n_i为总张数，单位均为张。总体率必须总分子除以总分母。下列公式使用ODEN原生equation inline，保留可编辑LaTeX；不是截图。"
+    },
+    {
+      "id": "pooled",
+      "parent_id": "accuracy",
+      "label": "计算：既有总体 Rook 88%，Sable 83%",
+      "role": "evidence",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-runs",
+          "locator": "A1:F5；四条记录，按算法合计"
+        },
+        {
+          "source_id": "s-method",
+          "locator": "第5–6、8行"
+        }
+      ],
+      "collapsed": false,
+      "body": [
+        {
+          "kind": "equation",
+          "latex": "A_R=\\frac{81+7}{90+10}=88\\%"
+        },
+        {
+          "kind": "equation",
+          "latex": "A_S=\\frac{19+64}{20+80}=83\\%"
+        }
+      ],
+      "note": "R=Rook v2，S=Sable v1。Rook是90张透明瓶与10张压扁瓶，Sable是20张透明瓶与80张压扁瓶；两者各100张。类别构成不同，既有总体排序不能直接迁移到各半展览场景。重复引用R-101不能增加分子或分母。"
+    },
+    {
+      "id": "standardized",
+      "parent_id": "accuracy",
+      "label": "各半估计：Rook 80%，Sable 87.5%",
+      "role": "claim",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-runs",
+          "locator": "A1:F5；四条记录，按算法合计"
+        },
+        {
+          "source_id": "s-method",
+          "locator": "第4–9行"
+        },
+        {
+          "source_id": "s-requirements",
+          "locator": "第4–8行"
+        }
+      ],
+      "collapsed": false,
+      "body": [
+        {
+          "kind": "equation",
+          "latex": "\\widehat A_R^{50:50}=\\frac12\\frac{81}{90}+\\frac12\\frac7{10}=80\\%"
+        },
+        {
+          "kind": "equation",
+          "latex": "\\widehat A_S^{50:50}=\\frac12\\frac{19}{20}+\\frac12\\frac{64}{80}=87.5\\%"
+        },
+        {
+          "kind": "paragraph",
+          "inlines": [
+            {
+              "kind": "text",
+              "text": "仅在类内表现可迁移时适用；不能替代同批复测。"
+            }
+          ]
+        }
+      ],
+      "note": "两类权重各1/2且各类样本数均大于0。此为AI按来源约定计算的目标场景估计，不是假设实际新增了一批各半样本。Sable高7.5个百分点，但两者都低于90%门槛；小样本与非配对限制仍保留。"
+    },
+    {
+      "id": "admission",
+      "parent_id": "root",
+      "label": "结论：两者均不能直接演示，三项未过",
+      "role": "claim",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-runs",
+          "locator": "A1:F5；四条记录，按算法合计"
+        },
+        {
+          "source_id": "s-method",
+          "locator": "第4–9行"
+        },
+        {
+          "source_id": "s-requirements",
+          "locator": "第4–8行"
+        },
+        {
+          "source_id": "s-timing",
+          "locator": "完整原图：上方计时表和下方黄色范围说明；1260×770像素"
+        }
+      ],
+      "collapsed": false,
+      "note": "依据资料判断当前不能正式准入；不是声称已完成新的准入测试。未过项分为前置复测未做、正确率现有结果未达标、端到端延迟缺测。业务未准入与本导图交付/校验状态分开记录。"
+    },
+    {
+      "id": "same-batch",
+      "parent_id": "admission",
+      "label": "前置复测未做：同机、同组新图片",
+      "role": "caveat",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-requirements",
+          "locator": "第5行"
+        },
+        {
+          "source_id": "s-method",
+          "locator": "第4行"
+        }
+      ],
+      "collapsed": false,
+      "note": "现有四批图像不是同一组；照明和设备一致不能替代同一组新采集图片的复测要求。"
+    },
+    {
+      "id": "accuracy-gate",
+      "parent_id": "admission",
+      "label": "正确率未达：既有总体与估计均低于90%",
+      "role": "caveat",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-runs",
+          "locator": "A1:F5；四条记录，按算法合计"
+        },
+        {
+          "source_id": "s-method",
+          "locator": "第4–9行"
+        },
+        {
+          "source_id": "s-requirements",
+          "locator": "第6行"
+        }
+      ],
+      "collapsed": false,
+      "note": "既有总体Rook88%、Sable83%；目标各半估计Rook80%、Sable87.5%。这两种口径均未达到90%，而正式同批复测的总体正确率尚无结果；不能把估计替代正式验收。"
+    },
+    {
+      "id": "latency-gate",
+      "parent_id": "admission",
+      "label": "端到端p95未测：≤80 ms尚未证明",
+      "role": "caveat",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-timing",
+          "locator": "完整原图：上方计时表和下方黄色范围说明；1260×770像素"
+        },
+        {
+          "source_id": "s-requirements",
+          "locator": "第6行"
+        }
+      ],
+      "collapsed": false,
+      "body": [
+        {
+          "kind": "paragraph",
+          "inlines": [
+            {
+              "kind": "text",
+              "text": "核心均值/p95：Rook 30/75 ms；Sable 42/68 ms。核心范围不足以验收。"
+            }
+          ]
+        }
+      ],
+      "note": "原图Sable42000/68000 µs，除以1000为42/68 ms；Rook原图直接为ms。均值不可替代p95。原图仅“已解码图像输入→分类结果输出”，每算法100次，不含相机采集、图像解码、分拣触发信号及冷启动；要求是“相机触发→分拣执行信号”的端到端p95。当前没有完整范围数据，因此不能宣布通过或计算保证性的剩余时延预算。旧版Sable v0的92 ms均值与本轮版本和范围不一致，不能用来比较。"
+    },
+    {
+      "id": "timing-image",
+      "parent_id": "latency-gate",
+      "label": "性能原图｜保留原始单位与计时边界",
+      "role": "resource",
+      "support": "fact",
+      "source_refs": [
+        {
+          "source_id": "s-timing",
+          "locator": "完整原图：上方计时表和下方黄色范围说明；1260×770像素"
+        }
+      ],
+      "collapsed": false,
+      "asset_id": "a-timing",
+      "note": "保留完整原图而非只截计时数字：标题、计时起终点、两组原始单位、样本量、黄色限制区均有决策价值。用户可打开资源查看1260×770像素原件。"
+    },
+    {
+      "id": "next-week",
+      "parent_id": "root",
+      "label": "下周行动：先复测，再按双门槛决定",
+      "role": "step",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-requirements",
+          "locator": "第4–8行"
+        },
+        {
+          "source_id": "s-method",
+          "locator": "第4–9行"
+        },
+        {
+          "source_id": "s-timing",
+          "locator": "完整原图：上方计时表和下方黄色范围说明；1260×770像素"
+        }
+      ],
+      "collapsed": false,
+      "note": "AI行动建议：本轮先安排Sable v1，Rook v2保留为后续同条件对照候选；不虚构负责人、精确日期、样本量或已执行状态。"
+    },
+    {
+      "id": "retest",
+      "parent_id": "next-week",
+      "label": "建议同组新图复测Sable并记录完整链路",
+      "role": "step",
+      "support": "inference",
+      "source_refs": [
+        {
+          "source_id": "s-requirements",
+          "locator": "第4–8行"
+        },
+        {
+          "source_id": "s-method",
+          "locator": "第4–9行"
+        },
+        {
+          "source_id": "s-timing",
+          "locator": "完整原图：上方计时表和下方黄色范围说明；1260×770像素"
+        }
+      ],
+      "collapsed": false,
+      "body": [
+        {
+          "kind": "paragraph",
+          "inlines": [
+            {
+              "kind": "text",
+              "text": "通过条件：总体正确率≥90%，且端到端p95≤80 ms。"
+            }
+          ]
+        }
+      ],
+      "note": "复测计划（尚未执行）：在同一设备、同一组新采集透明瓶/压扁瓶图片上测试，按预计各半场景设计并记录实际配比；保留每类correct/total以及总分子/总分母。逐次记录相机触发至分拣执行信号的延迟，据实计算p95，不用均值或各阶段p95拼接代替。确认并记录演示是否涉及冷启动，避免沿用原图未覆盖范围。未同时满足两项门槛则不准入；保留误分和慢请求以支持改进。"
+    }
+  ],
+  "cross_links": [],
+  "audit": {
+    "review_version": "1.0",
+    "questions": [
+      {
+        "question": "下周应该优先验证哪个算法？",
+        "status": "answered",
+        "node_ids": [
+          "priority",
+          "priority-evidence",
+          "standardized"
+        ]
+      },
+      {
+        "question": "能不能直接用于正式演示？",
+        "status": "answered",
+        "node_ids": [
+          "admission",
+          "accuracy-gate",
+          "latency-gate"
+        ]
+      },
+      {
+        "question": "还有哪些验收没过？",
+        "status": "answered",
+        "node_ids": [
+          "same-batch",
+          "accuracy-gate",
+          "latency-gate",
+          "retest"
+        ]
+      },
+      {
+        "question": "是否保留可编辑的正确率计算和有用的性能原图，并避免逐行节点？",
+        "status": "answered",
+        "node_ids": [
+          "accuracy",
+          "pooled",
+          "standardized",
+          "timing-image",
+          "comparison"
+        ]
+      }
+    ],
+    "coverage": [
+      {
+        "source_id": "s-requirements",
+        "read_scope": "全文第1–8行",
+        "unread_scope": "",
+        "method": "UTF-8全文读取，并核对实际行号；SHA-256核对原件与副本",
+        "source_version": "未单独标注文件版本；算法版本按原件保留"
+      },
+      {
+        "source_id": "s-method",
+        "read_scope": "全文第1–9行",
+        "unread_scope": "",
+        "method": "UTF-8全文读取，并核对实际行号；SHA-256核对原件与副本",
+        "source_version": "未单独标注文件版本；算法版本按原件保留"
+      },
+      {
+        "source_id": "s-runs",
+        "read_scope": "表头与全部4条记录；A1:F5",
+        "unread_scope": "",
+        "method": "读取全部CSV记录，用csv与Fraction重算；SHA-256核对原件与副本",
+        "source_version": "未单独标注文件版本；算法版本按原件保留"
+      },
+      {
+        "source_id": "s-timing",
+        "read_scope": "完整1260×770像素图：标题、两行计时、单位、范围与样本说明",
+        "unread_scope": "",
+        "method": "逐项视觉读取完整原图；Pillow读取尺寸；SHA-256核对原件与副本",
+        "source_version": "未单独标注文件版本；算法版本按原件保留"
+      }
+    ],
+    "decisions": [
+      {
+        "action": "merge",
+        "content": "相同Rook v2透明瓶批次被重复引用",
+        "reason": "引用次数不是独立样本；R-101仅计81/90一次",
+        "node_ids": [
+          "pooled"
+        ],
+        "source_ids": [
+          "s-method",
+          "s-runs"
+        ]
+      },
+      {
+        "action": "downshift",
+        "content": "四条原始测试记录及完整计算细节",
+        "reason": "保留精确比较表和CSV附件；不逐行生成节点",
+        "node_ids": [
+          "comparison",
+          "pooled",
+          "standardized"
+        ],
+        "source_ids": [
+          "s-runs"
+        ]
+      },
+      {
+        "action": "retain",
+        "content": "性能图的完整单位、范围、样本量和冷启动限定",
+        "reason": "决定能否将性能指标用于端到端准入；完整原图无需裁剪",
+        "node_ids": [
+          "latency-gate",
+          "timing-image"
+        ],
+        "source_ids": [
+          "s-timing"
+        ]
+      },
+      {
+        "action": "downshift",
+        "content": "Sable v0的92 ms旧平均耗时",
+        "reason": "版本与计时范围不一致，只作为不可比较的版本注意事项留在备注和表格",
+        "node_ids": [
+          "comparison",
+          "latency-gate"
+        ],
+        "source_ids": [
+          "s-method"
+        ]
+      },
+      {
+        "action": "retain",
+        "content": "目标50/50估计所需的类内可迁移假设",
+        "reason": "该假设会改变推荐的适用范围，直接放在公式节点可见正文",
+        "node_ids": [
+          "standardized"
+        ],
+        "source_ids": [
+          "s-method",
+          "s-requirements"
+        ]
+      }
+    ],
+    "issues": [
+      {
+        "id": "i-same-batch",
+        "scope": "subject",
+        "severity": "material",
+        "status": "open",
+        "description": "同机同组新采集图片复测未执行，现有四批非配对。",
+        "node_ids": [
+          "same-batch",
+          "retest"
+        ]
+      },
+      {
+        "id": "i-accuracy",
+        "scope": "subject",
+        "severity": "material",
+        "status": "open",
+        "description": "既有总体和目标各半估计均低于90%；正式同批复测尚无结果。",
+        "node_ids": [
+          "accuracy-gate"
+        ]
+      },
+      {
+        "id": "i-latency",
+        "scope": "subject",
+        "severity": "material",
+        "status": "open",
+        "description": "端到端p95缺测，现有核心推理p95不能证明≤80 ms。",
+        "node_ids": [
+          "latency-gate"
+        ]
+      },
+      {
+        "id": "i-runtime",
+        "scope": "deliverable",
+        "severity": "minor",
+        "status": "open",
+        "description": "未运行macOS ODEN，尚未完成应用内视觉、保存和重开验收。",
+        "node_ids": [
+          "root"
+        ]
+      }
+    ],
+    "checks": {
+      "semantic": {
+        "status": "passed",
+        "reviewer": "AI自审",
+        "evidence": "对照四份完整输入逐项核对推荐、准入否决、非配对、小样本迁移、样本构成、旧版本和重复引用。原始事实、派生计算、AI建议分别标识。"
+      },
+      "reader": {
+        "status": "passed",
+        "reviewer": "AI自审",
+        "evidence": "按根→四个主干→展开/资源顺序审阅；可见主干直接回答先复测Sable、不能直接演示，三个不同验收状态均显式显示；关键限定未折叠。没有按四条CSV逐行建节点。"
+      },
+      "numbers_formulas": {
+        "status": "passed",
+        "reviewer": "AI＋Python Fraction算术核对",
+        "evidence": "重算各类90/70/95/80%，总体88/83%，各半80/87.5%；分母均正、R-101仅计一次；42000/68000 µs÷1000=42/68 ms。公式符号R/S、c_i/n_i和估计假设已核对，保留原生equation。未声称通过ODEN公式渲染。"
+      },
+      "resources": {
+        "status": "passed",
+        "reviewer": "AI＋本地字节/图像检查",
+        "evidence": "已目视核对1260×770原图所有数字、单位和限制；4份源文件复制前后SHA-256一致；派生比较表按原件与精确计算核对。未裁剪或重绘性能图。"
+      },
+      "native_runtime": {
+        "status": "not_run",
+        "reviewer": "AI",
+        "evidence": "当前仅使用给定离线技能与输入；转换器不提供macOS ODEN运行验收，尚未完成ODEN内视觉和保存重开。"
+      }
+    },
+    "transformations": [
+      {
+        "asset_id": "a-requirements",
+        "record": {
+          "method": "byte_preserving_copy",
+          "parameters": {
+            "source_id": "s-requirements",
+            "input_file": "demo-requirements.md",
+            "complete_source": true,
+            "crop": null,
+            "resize": null
+          },
+          "tool_versions": {
+            "python": "3.12.14"
+          },
+          "checks": {
+            "sha256_match": true,
+            "source_sha256": "ab22de20838f564afd604f2caf59926fafe9ea5b1314173241fba4f8b04ab7e9",
+            "output_sha256": "ab22de20838f564afd604f2caf59926fafe9ea5b1314173241fba4f8b04ab7e9",
+            "bytes": 496,
+            "image_visual_review": "UTF-8全文已读取并核对"
+          }
+        }
+      },
+      {
+        "asset_id": "a-method",
+        "record": {
+          "method": "byte_preserving_copy",
+          "parameters": {
+            "source_id": "s-method",
+            "input_file": "test-method.md",
+            "complete_source": true,
+            "crop": null,
+            "resize": null
+          },
+          "tool_versions": {
+            "python": "3.12.14"
+          },
+          "checks": {
+            "sha256_match": true,
+            "source_sha256": "eb600e41fed0a17b0143df999cbab767741d27e2539c17900f5b2722b078b094",
+            "output_sha256": "eb600e41fed0a17b0143df999cbab767741d27e2539c17900f5b2722b078b094",
+            "bytes": 725,
+            "image_visual_review": "UTF-8全文已读取并核对"
+          }
+        }
+      },
+      {
+        "asset_id": "a-runs",
+        "record": {
+          "method": "byte_preserving_copy",
+          "parameters": {
+            "source_id": "s-runs",
+            "input_file": "classification-runs.csv",
+            "complete_source": true,
+            "crop": null,
+            "resize": null
+          },
+          "tool_versions": {
+            "python": "3.12.14"
+          },
+          "checks": {
+            "sha256_match": true,
+            "source_sha256": "ffb1c2824b60ee789693fa271a1a6a94d96f91fc6b4467e421c768b18feee6bf",
+            "output_sha256": "ffb1c2824b60ee789693fa271a1a6a94d96f91fc6b4467e421c768b18feee6bf",
+            "bytes": 186,
+            "image_visual_review": "UTF-8全文已读取并核对"
+          }
+        }
+      },
+      {
+        "asset_id": "a-timing",
+        "record": {
+          "method": "byte_preserving_copy",
+          "parameters": {
+            "source_id": "s-timing",
+            "input_file": "core-timing.png",
+            "complete_source": true,
+            "crop": null,
+            "resize": null
+          },
+          "tool_versions": {
+            "python": "3.12.14"
+          },
+          "checks": {
+            "sha256_match": true,
+            "source_sha256": "385d734ec8ff28e4b00e6765c8bfa1d723ee0f74f6443d79b196ed16d65f46cc",
+            "output_sha256": "385d734ec8ff28e4b00e6765c8bfa1d723ee0f74f6443d79b196ed16d65f46cc",
+            "bytes": 54957,
+            "image_visual_review": "完整原图已逐项目视核对；未裁切"
+          }
+        }
+      },
+      {
+        "asset_id": "a-comparison",
+        "record": {
+          "method": "exact_fraction_calculation_and_visual_transcription",
+          "parameters": {
+            "source_ids": [
+              "s-runs",
+              "s-method",
+              "s-requirements",
+              "s-timing"
+            ],
+            "pooled_denominator": "每算法的总样本数100；R-101仅计算一次",
+            "standardization_weights": {
+              "clear_bottle": 0.5,
+              "crumpled_bottle": 0.5
+            },
+            "us_to_ms_divisor": 1000,
+            "rounding": "所有显示百分数精确，不附加四舍五入；无统计显著性推断"
+          },
+          "tool_versions": {
+            "python": "3.12.14",
+            "arithmetic": "fractions.Fraction"
+          },
+          "checks": {
+            "exact_values": [
+              88,
+              83,
+              80,
+              87.5
+            ],
+            "mean_ms": [
+              30,
+              42
+            ],
+            "p95_ms": [
+              75,
+              68
+            ],
+            "source_image_visual_checked": true,
+            "table_text_reviewed": true,
+            "sha256": "76d9af0a53222e5e63a1095ea86f79108eb679a03a881c3fe221b615f7e9d92c"
+          }
+        }
+      }
+    ],
+    "calculations": {
+      "Rook": {
+        "version": "v2",
+        "correct": 88,
+        "total": 100,
+        "class_rates": {
+          "clear_bottle": {
+            "fraction": "9/10",
+            "percent": 90.0
+          },
+          "crumpled_bottle": {
+            "fraction": "7/10",
+            "percent": 70.0
+          }
+        },
+        "pooled": {
+          "fraction": "22/25",
+          "percent": 88.0
+        },
+        "half_half_estimate": {
+          "fraction": "4/5",
+          "percent": 80.0,
+          "assumption": "各类各占一半，且现有小批次的类内表现可迁移；非同批实测或准入结果"
+        }
+      },
+      "Sable": {
+        "version": "v1",
+        "correct": 83,
+        "total": 100,
+        "class_rates": {
+          "clear_bottle": {
+            "fraction": "19/20",
+            "percent": 95.0
+          },
+          "crumpled_bottle": {
+            "fraction": "4/5",
+            "percent": 80.0
+          }
+        },
+        "pooled": {
+          "fraction": "83/100",
+          "percent": 83.0
+        },
+        "half_half_estimate": {
+          "fraction": "7/8",
+          "percent": 87.5,
+          "assumption": "各类各占一半，且现有小批次的类内表现可迁移；非同批实测或准入结果"
+        }
+      },
+      "core_timing": {
+        "source": "s-timing",
+        "scope": "decoded image input to classification result output",
+        "runs_each": 100,
+        "Rook_v2": {
+          "mean_ms": 30,
+          "p95_ms": 75
+        },
+        "Sable_v1": {
+          "raw_mean_us": 42000,
+          "raw_p95_us": 68000,
+          "mean_ms": 42.0,
+          "p95_ms": 68.0
+        },
+        "excluded": [
+          "camera capture",
+          "image decoding",
+          "sorter trigger signal",
+          "cold start"
+        ],
+        "end_to_end_measured": false
+      }
+    },
+    "semantic_review": {
+      "source_truth_scope": "仅核对用户提供的合成资料内部一致性，不声称外部真实实验。",
+      "diagnostics": {
+        "top_level_branches": 4,
+        "logical_nodes": 14,
+        "raw_data_row_nodes": 0,
+        "duplicate_information_nodes": 0,
+        "all_required_questions_have_visible_answers": true
+      },
+      "visible_scope_check": "优先复测与正式准入在主干明确分离；估计的迁移假设与公式同处可见；延迟缺测不是数值失败。",
+      "runtime_boundary": "静态格式与资源验证是本次可执行验收；真实ODEN显示和保存重开单列未做。"
+    }
+  }
+}

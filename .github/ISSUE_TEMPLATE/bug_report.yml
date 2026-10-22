@@ -1,0 +1,27 @@
+name: Bug report
+description: Report a reproducible toolkit issue using synthetic material.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: "Do not upload private documents, workspaces, tokens or application source. Use a synthetic reproducer. Report security issues privately."
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: Commands and synthetic inputs only; redact paths and sensitive logs.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: ARC version, Python version, OS and optional extras.
+    validations:
+      required: true

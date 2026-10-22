@@ -1,0 +1,17 @@
+include README.md README.zh-CN.md README.zh-TW.md SKILL.md AGENTS.md
+include LICENSE NOTICE.md THIRD_PARTY.md CONTRIBUTING.md SECURITY.md CHANGELOG.md
+include requirements-dev.txt requirements-media.txt
+recursive-include docs *.md
+recursive-include prompts *.md
+recursive-include references *.md
+recursive-include schemas *.json
+recursive-include assets *.json *.svg *.png *.md
+recursive-include agents *.yaml
+recursive-include examples *.json *.md *.txt *.csv *.srt *.png
+recursive-include scripts *.py
+recursive-include tests *.py
+global-exclude *.py[cod] *.sqlite* *.db .DS_Store
+prune .git
+prune .venv
+prune build
+prune dist
