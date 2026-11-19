@@ -10,7 +10,7 @@ Oden ARC helps an AI assistant turn documents, images, tables and other source m
 
 It combines an **Agent Skill**, a **local command-line toolkit**, and **resumable evidence memory**. Your AI host interprets the material; ARC organizes state, validates references and creates new `.odenmap` files. It does not run a model or require an API account of its own.
 
-**[OdenMap website & Mac beta](https://baojiachen0214.github.io/oden-website/)** · [Source repository](https://github.com/baojiachen0214/oden-arc)
+**[OdenMap official website & beta](https://www.matstein.top/odenmap/)** · [Source repository](https://github.com/baojiachen0214/oden-arc)
 
 **OdenMap is a separate, closed-source native Swift app.** This repository opens only the companion skill, Python tools, documentation and synthetic examples.
 
